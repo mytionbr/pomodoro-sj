@@ -1,0 +1,43 @@
+body{
+	font-size: 30px;
+}
+header{
+	width: 100%;
+}
+header h1{
+	text-align: center;
+	padding: 30px;
+	font-size:2.0em;
+}
+main{
+	width: 100%;
+}
+main .container{
+	width: 60%;
+	margin: 10px auto;
+	color: white;
+	padding: 50px;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+
+}
+.contador, .btns{
+	width: 50%;
+	text-align: center;
+	margin: 10px 0;
+	display: flex;
+	justify-content: space-around;
+}
+.contador, .btns button{
+	font-size: 1.2em;
+}
+.contador h1{
+	font-size: 3.0em;
+}
+.tabela{
+	margin: 1.5em 0;
+}
+.tabela h1{
+	text-align: center;
+}
