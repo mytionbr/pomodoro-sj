@@ -13,11 +13,11 @@
 	<main>
 		<div class="container bg-primary">
 			<div class="contador">
-				<h1><span id="time-minutes">0</span>:<span id="time-seconds">5</span></h1>
+				<h1><span id="time-minutes">5</span>:<span id="time-seconds">00</span></h1>
 			</div>
 			<div class="btns">
-				<button class="btn btn-warning" id="start">Iniciar</button>
-				<button class="btn btn-warning">Reniciar</button>
+				<button class="btn btn-warning" id="start" onclick="controllerPomodoro.startTime()">Iniciar</button>
+				<button class="btn btn-warning" onclick="controllerPomodoro.restart()">Reniciar</button>
 			</div>
 		</div>
 		<div class="tabela">
@@ -44,13 +44,10 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<!-- controller-->
 	<script src="js/controller/ControllerPomodoro.js"></script>
+
+	
 	<script>
 		let controllerPomodoro = new ControllerPomodoro();
-		let startButton = document.querySelector("#start");
-		startButton.addEventListener("click",()=>{
-			console.log("ola");
-			controllerPomodoro._startTime();
-		});
 	</script>
 </body>
 </html>
