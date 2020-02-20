@@ -61,6 +61,7 @@ class ControllerPomodoro {
 		this._fieldTimeSeconds.innerHTML = this._time[1];
 		console.log(this._time);
 		this.zeraForm();
+		this.pauseButton()
 	}
 	zeraForm(){
 		 this._timeForm.value = "00:00";
