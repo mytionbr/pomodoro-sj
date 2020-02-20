@@ -16,8 +16,7 @@ main .container{
 	width: 60%;
 	margin: 10px auto;
 	color: white;
-	padding: 50px;
-	align-items: center;
+	padding: 15px 15px 35px 15px;
 	display: flex;
 	flex-direction: column;
 
@@ -25,7 +24,7 @@ main .container{
 .contador, .btns{
 	width: 50%;
 	text-align: center;
-	margin: 10px 0;
+	margin: 0 0 10px 0;
 	display: flex;
 	justify-content: space-around;
 }
@@ -40,4 +39,19 @@ main .container{
 }
 .tabela h1{
 	text-align: center;
+}
+.container-contador{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.model-button{
+	background-image: url("../img/bloco-de-anotacoes (2).png");
+	width: 64px;
+	height: 64px;
+	background-color: #007bff;
+	border: none;
+}
+.conteiner-model{
+	width: 64px;
 }

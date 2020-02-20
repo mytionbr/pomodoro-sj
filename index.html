@@ -3,8 +3,10 @@
 <head>
 	<title>Pomodoro.sj</title>
 	<meta charset="utf-8">
+
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
+
 </head>
 <body>
 	<header class="bg-light">
@@ -12,12 +14,17 @@
 	</header>
 	<main>
 		<div class="container bg-primary">
-			<div class="contador">
-				<h1><span id="time-minutes">5</span>:<span id="time-seconds">00</span></h1>
+			<div class="conteiner-model">
+				<button type="button" class="btn btn-primary model-button" data-toggle="modal" data-target="#formModal"></button>
 			</div>
-			<div class="btns">
-				<button class="btn btn-warning" id="start" onclick="controllerPomodoro.startTime()">Iniciar</button>
-				<button class="btn btn-warning" onclick="controllerPomodoro.restart()">Reniciar</button>
+			<div class="container-contador">
+				<div class="contador">
+					<h1><span id="time-minutes">5</span>:<span id="time-seconds">00</span></h1>
+				</div>
+				<div class="btns">
+					<button class="btn btn-warning" id="start" onclick="controllerPomodoro.startTime()">Iniciar</button>
+					<button class="btn btn-warning" onclick="controllerPomodoro.restart()">Reniciar</button>
+				</div>
 			</div>
 		</div>
 		<div class="tabela">
@@ -35,6 +42,35 @@
 				</tbody>
 			</table>
 		</div>
+
+		<div class="modal fade" id="formModal" tabindex="-1" role="dialog"  aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Configurações</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						
+						<form onsubmit="controllerPomodoro.form(event)">
+							<div class="form-group">
+								<label for="tempoForm">Duração do pomodoro</label>
+								<input type="time" class="form-control" id="tempoForm">
+								<button type="submit" class="btn btn-primary">Salvar</button>
+							</div>
+						</form>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</main>
 	<footer>
 		
