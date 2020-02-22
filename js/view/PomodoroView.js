@@ -21,6 +21,12 @@ class PomodoroView{
 						<th>${DateHelper.dateToText(n.date)}</th>
 					</tr>`).join('')}
 				</tbody>
+			 <tfoot>
+                <td colspan="2">Total de tempo</td>
+                <td>
+                    ${model.totalMinutes + `:` + model.totalSeconds}
+                </td>
+            </tfoot>
 			</table>
 		</div>`;
 	}
