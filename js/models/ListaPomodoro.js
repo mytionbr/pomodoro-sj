@@ -15,13 +15,7 @@ class ListaPomodoro{
 		return [].concat(this._pomodoros);
 	}
 	calculateTotalTime(){
-		// this._pomodoros.map((n, indice) => {
-		// 	this._time = n.tempo.split(":");
-		// 	this._totalMinutes += parseInt(this._time[indice]);
-		// 	this._totalSeconds += parseInt(this._time[indice+1]);
-		// 	this._time = [];
-		// 	console.log(this._totalSeconds);
-		// 	});
+		
 		this._totalSeconds = 0;
 		this._totalMinutes = 0;
 			this._pomodoros.map(n =>{

@@ -22,7 +22,7 @@ class PomodoroView{
 					</tr>`).join('')}
 				</tbody>
 			 <tfoot>
-                <td colspan="2">Total de tempo</td>
+                <td colspan="1">Total de tempo</td>
                 <td>
                     ${model.totalMinutes + `:` + model.totalSeconds}
                 </td>
