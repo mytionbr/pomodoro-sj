@@ -1,12 +1,19 @@
 class Pomodoro{
-	constructor(tempo,data){
-		this._data = new Date(date.getTime());
+	constructor(tempo){
+		this._date = new Date();
 		this._tempo = tempo;
+		this._id = 0;
 	}
 	get tempo(){
 		return this._tempo;
 	}
-	get data(){
-		return this._data.getTime();
+	get date(){
+		return this._date;
+	}
+	set idPomodoro(id){
+		this._id = id;
+	}
+	get idPomodoro(){
+		return this._id;
 	}
 }

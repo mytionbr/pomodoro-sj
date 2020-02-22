@@ -1,0 +1,30 @@
+class PomodoroView{
+	constructor(element){
+		this._element = element;
+	}
+	template(model){
+		return `<div class="tabela">
+			<h1>Lista de pomodoros</h1>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Tempo</th>
+						<th scope="col">horário</th>
+					</tr>
+				</thead>
+				<tbody>
+				${model.pomodoros.map(n => 
+					`<tr>
+						<th>${n.idPomodoro}</th>
+						<th>${n.tempo}</th>
+						<th>${DateHelper.dateToText(n.date)}</th>
+					</tr>`).join('')}
+				</tbody>
+			</table>
+		</div>`;
+	}
+	update(model){
+		this._element.innerHTML = this.template(model);
+	}
+}

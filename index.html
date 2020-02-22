@@ -19,7 +19,7 @@
 			</div>
 			<div class="container-contador">
 				<div class="contador">
-					<h1><span id="time-minutes">5</span>:<span id="time-seconds">00</span></h1>
+					<h1><span id="time-minutes">00</span>:<span id="time-seconds">5</span></h1>
 				</div>
 				<div class="btns">
 					<button class="btn btn-warning" id="start" onclick="controllerPomodoro.startTime()">Iniciar</button>
@@ -27,21 +27,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="tabela">
-			<h1>Lista de pomodoros</h1>
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Tempo</th>
-						<th scope="col">horário</th>
-					</tr>
-				</thead>
-				<tbody>
-					
-				</tbody>
-			</table>
-		</div>
+		<div id="tabelaArea"></div>
 
 		<div class="modal fade" id="formModal" tabindex="-1" role="dialog"  aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -80,6 +66,10 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<!-- controller-->
 	<script src="js/controller/ControllerPomodoro.js"></script>
+	<script src="js/models/Pomodoro.js"></script>
+	<script src="js/models/ListaPomodoro.js"></script>
+	<script src="js/helpers/DateHelper.js"></script>
+	<script src="js/view/PomodoroView.js"></script>
 
 	
 	<script>
