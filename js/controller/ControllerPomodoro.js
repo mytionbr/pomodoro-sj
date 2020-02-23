@@ -5,7 +5,12 @@ class ControllerPomodoro {
 
 		this._fieldTimeMinutes = $("#time-minutes");
 		this._fieldTimeSeconds = $("#time-seconds");
-		this._timeForm = $("#tempoForm");
+		this._timeStart = $("#tempoStart");
+		this._timePause = $("#tempoPause");
+		this._backgraund = $(".container");
+
+		this._breakTime = [0,10];
+		this._session = 0;
 
 		this._id = null;
 		this._time = this.time();
@@ -25,7 +30,7 @@ class ControllerPomodoro {
 		this._button.setAttribute("onclick","controllerPomodoro.pauseButton()");
 		this._button.setAttribute("id","pause");
 		this._button.textContent = "Pause";
-
+		this._session ++;
 		this._id = setInterval(() =>{
 			
 			if (timeSeconds < 1) {
@@ -39,15 +44,24 @@ class ControllerPomodoro {
 			if (timeSeconds >= 0) {
 				document.querySelector("#time-seconds").innerHTML = timeSeconds;
 			}
-			if (timeMinutes == 0 && timeSeconds < 1 ) {	
+			
+			if ((timeMinutes == 0 && timeSeconds < 1) && (this._session % 2 != 0)) {	
+
 				this._pomodoroList.add(this.createPomodoro());
 				this._pomodoroView.update(this._pomodoroList);
-				console.log(this._pomodoroList.pomodoros);
-				clearInterval(this._id);
-			}
+				this.pauseTime();
+				this.pauseButton();
 
+			}
+			if ((timeMinutes == 0 && timeSeconds < 1) && (this._session % 2 == 0)) {	
+				
+				this.restart();
+				clearInterval(this._id);
+				
+			}
 		},1000);
 
+		
 	}
 	pauseButton(){
 		this._button.removeAttribute("id","pause");
@@ -66,15 +80,18 @@ class ControllerPomodoro {
 	}
 	form(event){
 		event.preventDefault();
-		this._time = this._timeForm.value.split(':');
+		this._time = this._timeStart.value.split(':');
 		this._fieldTimeMinutes.innerHTML = this._time[0];
 		this._fieldTimeSeconds.innerHTML = this._time[1];
-		console.log(this._time);
+		
+		this._breakTime = this._timePause.value.split(':');
+
 		this.zeraForm();
 		this.pauseButton()
 	}
 	zeraForm(){
-		this._timeForm.value = "00:00";
+		this._timeStart.value = "00:00";
+		this._timePause.value = "00:00";
 	}
 	time(){
 		let time = [];
@@ -85,5 +102,12 @@ class ControllerPomodoro {
 	createPomodoro(){
 		return new Pomodoro((this._time[0] + ":" + this._time[1]));
 	}
+	pauseTime(){
+		this._fieldTimeMinutes.textContent = this._breakTime[0];
+		this._fieldTimeSeconds.textContent = this._breakTime[1];
+		
+		
+	}
+
 
 }

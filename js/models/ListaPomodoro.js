@@ -24,8 +24,7 @@ class ListaPomodoro{
 				this._totalMinutes += parseInt(this._time[0]);
 				this._totalSeconds += parseInt(this._time[1]);
 				this._time = [];
-				console.log(this._totalSeconds);
-
+				
 			});
 			
 		}
