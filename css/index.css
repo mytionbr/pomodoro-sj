@@ -50,8 +50,8 @@ main .container{
 	background-image: url("../img/bloco-de-anotacoes (2).png");
 	width: 64px;
 	height: 64px;
-	background-color: #007bff;
 	border: none;
+	
 }
 .conteiner-model{
 	width: 64px;
@@ -61,7 +61,4 @@ main .container{
 }
 .telaPausa{
 	background-color: #32CD32;
-}
-.telaStart{
-	background-color: #B22222;
 }

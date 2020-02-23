@@ -56,6 +56,7 @@ class ControllerPomodoro {
 				this.pauseButton();
 				this._backgraund.removeAttribute("class","container telaInicial");
 				this._backgraund.setAttribute("class","container telaPausa");
+				this.triggerSound();
 			}
 			if ((timeMinutes == 0 && timeSeconds < 1) && (this._session % 2 == 0)) {	
 				
@@ -64,6 +65,7 @@ class ControllerPomodoro {
 				this._session ++;
 				this._backgraund.removeAttribute("class","container telaPausa");
 				this._backgraund.setAttribute("class","container telaInicial");
+				this.triggerSound();
 				clearInterval(this._id);
 				
 			}
@@ -115,9 +117,9 @@ class ControllerPomodoro {
 	pauseTime(){
 		this._fieldTimeMinutes.textContent = this._breakTime[0];
 		this._fieldTimeSeconds.textContent = this._breakTime[1];
-		
-		
 	}
-
+	triggerSound(){
+		document.querySelector("#alerta").play();
+	}
 
 }
