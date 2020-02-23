@@ -19,6 +19,7 @@ main .container{
 	padding: 15px 15px 35px 15px;
 	display: flex;
 	flex-direction: column;
+	
 
 }
 .contador, .btns{
@@ -54,4 +55,13 @@ main .container{
 }
 .conteiner-model{
 	width: 64px;
+}
+.telaInicial{
+	background-color: #007bff;
+}
+.telaPausa{
+	background-color: #32CD32;
+}
+.telaStart{
+	background-color: #B22222;
 }

@@ -9,7 +9,7 @@ class ControllerPomodoro {
 		this._timePause = $("#tempoPause");
 		this._backgraund = $(".container");
 
-		this._breakTime = [0,10];
+		this._breakTime = [5,0];
 		this._session = 0;
 
 		this._id = null;
@@ -31,6 +31,9 @@ class ControllerPomodoro {
 		this._button.setAttribute("id","pause");
 		this._button.textContent = "Pause";
 		this._session ++;
+
+
+
 		this._id = setInterval(() =>{
 			
 			if (timeSeconds < 1) {
@@ -51,11 +54,16 @@ class ControllerPomodoro {
 				this._pomodoroView.update(this._pomodoroList);
 				this.pauseTime();
 				this.pauseButton();
-
+				this._backgraund.removeAttribute("class","container telaInicial");
+				this._backgraund.setAttribute("class","container telaPausa");
 			}
 			if ((timeMinutes == 0 && timeSeconds < 1) && (this._session % 2 == 0)) {	
 				
 				this.restart();
+				// contrapor o efeito do button reiniciar
+				this._session ++;
+				this._backgraund.removeAttribute("class","container telaPausa");
+				this._backgraund.setAttribute("class","container telaInicial");
 				clearInterval(this._id);
 				
 			}
@@ -77,6 +85,8 @@ class ControllerPomodoro {
 		this.pauseButton();
 		this._fieldTimeMinutes.textContent = this._time[0];
 		this._fieldTimeSeconds.textContent = this._time[1];
+		// contrapor o efeito do button reiniciar
+		this._session --;
 	}
 	form(event){
 		event.preventDefault();
