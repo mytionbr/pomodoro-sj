@@ -49,10 +49,10 @@
 						<form onsubmit="controllerPomodoro.form(event)">
 							<div class="form-group">
 								<label for="tempoStart">Duração do pomodoro</label>
-								<input type="time" class="form-control" id="tempoStart" placeholder="mins:secr",> 
+								<input type="time" class="form-control" id="tempoStart" value="20:00"> 
 
 								<label for="tempoPause">Duração da pausa</label>
-								<input type="time" class="form-control" id="tempoPause" >
+								<input type="time" class="form-control" id="tempoPause" value="05:00">
 
 								<button type="submit" class="btn btn-primary" onclick="controllerPomodoro.triggetAlert()">Salvar</button>
 								<div class="alert alert-success none" >
@@ -87,7 +87,7 @@
 
 	
 	<script>
-		
+
 		let controllerPomodoro = new ControllerPomodoro();
 	</script>
 </body>
