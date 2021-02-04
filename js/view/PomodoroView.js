@@ -4,8 +4,8 @@ class PomodoroView{
 	}
 	template(model){
 		return `<div class="tabela">
-			<h1>Lista de pomodoros</h1>
-			<table class="table">
+			<h1 class="text-light">Lista de pomodoros</h1>
+			<table class="table table-dark table-borderless">
 				<thead>
 					<tr>
 						<th scope="col">#</th>

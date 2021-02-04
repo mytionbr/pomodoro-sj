@@ -63,3 +63,8 @@ main .container{
 .telaPausa{
 	background-color: #32CD32;
 }
+.tabela{
+	font-size: 1.3rem;
+	max-width: 60%;
+	margin: 0 auto;
+}

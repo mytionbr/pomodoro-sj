@@ -9,6 +9,7 @@ class ControllerPomodoro {
 		this._timePause = $("#tempoPause");
 		this._backgraund = $(".container");
 
+		
 		this._breakTime = [5,0];
 		this._session = 0;
 
