@@ -25,7 +25,7 @@
 			</div>
 			<div class="container-contador">
 				<div class="contador">
-					<h1><span id="time-minutes">25</span>:<span id="time-seconds">00</span></h1>
+					<h1><span id="time-minutes">20</span>:<span id="time-seconds">00</span></h1>
 				</div>
 				<div class="btns">
 					<button class="btn btn-warning" id="start" onclick="controllerPomodoro.startTime()">Iniciar</button>
@@ -49,12 +49,15 @@
 						<form onsubmit="controllerPomodoro.form(event)">
 							<div class="form-group">
 								<label for="tempoStart">Duração do pomodoro</label>
-								<input type="time" class="form-control" id="tempoStart">
+								<input type="time" class="form-control" id="tempoStart" placeholder="mins:secr",> 
 
 								<label for="tempoPause">Duração da pausa</label>
-								<input type="time" class="form-control" id="tempoPause">
+								<input type="time" class="form-control" id="tempoPause" >
 
-								<button type="submit" class="btn btn-primary">Salvar</button>
+								<button type="submit" class="btn btn-primary" onclick="controllerPomodoro.triggetAlert()">Salvar</button>
+								<div class="alert alert-success none" >
+									Modificação feita com sucesso!
+								</div>
 							</div>
 						</form>
 
@@ -84,6 +87,7 @@
 
 	
 	<script>
+		
 		let controllerPomodoro = new ControllerPomodoro();
 	</script>
 </body>

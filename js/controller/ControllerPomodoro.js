@@ -104,7 +104,7 @@ class ControllerPomodoro {
 		
 		this._breakTime = this._timePause.value.split(':');
 
-		this.zeraForm();
+		
 		this.pauseButton()
 	}
 	zeraForm(){
@@ -127,5 +127,13 @@ class ControllerPomodoro {
 	triggerSound(){
 		document.querySelector("#alerta").play();
 	}
-
+	triggetAlert(){
+		document.querySelector('.alert').classList.remove('none')
+		setTimeout(()=>{
+			document.querySelector('.alert').classList.add('none')
+		},2500)
+	}
+	
+	
+	
 }
