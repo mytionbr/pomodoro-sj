@@ -39,12 +39,17 @@ class ControllerPomodoro {
 			
 			if (timeSeconds < 1) {
 				timeMinutes--;
+				timeMinutes = (timeMinutes < 10)? '0' + timeMinutes: timeMinutes  
 				document.querySelector("#time-minutes").innerHTML = timeMinutes;
 			}
 			if (timeSeconds < 1) {
 				timeSeconds = 60;
 			}
+			
 			timeSeconds--;
+			if(timeSeconds < 10){
+				timeSeconds =  '0' + timeSeconds 
+			}
 			if (timeSeconds >= 0) {
 				document.querySelector("#time-seconds").innerHTML = timeSeconds;
 			}
