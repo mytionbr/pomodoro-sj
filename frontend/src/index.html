@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pomodoro.sj</title>
+	<meta charset="utf-8">
+
+	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/v4-shims.css">
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	
+</head>
+
+<body>
+	<audio id="alerta" src="audio/alerta.mp3"></audio>
+	
+	<div class="grid-container">
+		<header>
+			<div class="brand">
+				<h1>Pomodoro-SJ</h1>
+			</div>
+		</header>
+		<main>main</main>
+		<footer>footer</footer>
+	</div>
+	
+	<!-- controller-->
+	<script src="js/controller/ControllerPomodoro.js"></script>
+	<script src="js/models/Pomodoro.js"></script>
+	<script src="js/models/ListaPomodoro.js"></script>
+	<script src="js/helpers/DateHelper.js"></script>
+	<script src="js/view/PomodoroView.js"></script>
+
+	
+	<script>
+
+		let controllerPomodoro = new ControllerPomodoro();
+	</script>
+</body>
+</html>

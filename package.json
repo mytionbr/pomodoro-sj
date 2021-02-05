@@ -1,0 +1,22 @@
+{
+  "name": "pomodoro-sj",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mytionbr/pomodoro-sj.git"
+  },
+  "author": "Matheus Sousa de Jesus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mytionbr/pomodoro-sj/issues"
+  },
+  "homepage": "https://github.com/mytionbr/pomodoro-sj#readme",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}
