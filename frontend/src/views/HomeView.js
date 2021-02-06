@@ -7,7 +7,7 @@ const HomeView = {
             <button id='pausa-curta-mode'>Pausa curta</button>
             <button id='pausa-longa-mode'>Pausa longa</button>
         </div>
-        <div class="pomodoro-counter">
+        <div class="pomodoro-time">
             60 : 00
         </div>
         <div class="pomodoro-tasks">Trabalho</div>

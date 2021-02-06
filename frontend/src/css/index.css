@@ -111,7 +111,7 @@ main{
 .pomodoro-options button:hover{
 	background-color: var(--bg-red-dack);
 }
-.pomodoro-counter{
+.pomodoro-time{
 	display: flex;
 	align-items: center;
 	justify-content: center;
