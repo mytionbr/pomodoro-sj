@@ -9,9 +9,13 @@ const pomodoroInterface  = ()=>{
     btnStart.addEventListener('click',()=>{
         let timePomodoro = time.textContent
             timePomodoro = timePomodoro.split(':')
+        let minute,second
+        
+        (timePomodoro[0] != 0 && timePomodoro[0] != 0)
+            ? (minute = timePomodoro[0], second = timePomodoro[1])
+            : (minute = data.pomodoro.min, second = data.pomodoro.second)
 
-        let minute = timePomodoro[0]
-        let second = timePomodoro[1]
+
         
         let i = setInterval(()=>{
 
