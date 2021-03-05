@@ -2,7 +2,7 @@ import data from '../data.js'
 const pomodoroInterface  = ()=>{
     let time = document.querySelector('.pomodoro-time')
     let btnStart = document.querySelector('#start-button')
-
+    let btn
     time.innerHTML = `${data.pomodoro.min} : ${data.pomodoro.second}`
 
 
@@ -26,7 +26,8 @@ const pomodoroInterface  = ()=>{
                         
                 },10)
         
-    })
+    }
+
 }
 
 export default pomodoroInterface
