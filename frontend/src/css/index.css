@@ -153,3 +153,7 @@ footer{
 	color: var(--bg-white);
 	font-size: 1.5rem;
 }
+
+.btnpause{
+	color: #ffffff7f !important;
+}
