@@ -1,6 +1,16 @@
 import data from '../data.js'
 
-const pomodoroInterface  = ()=>{
+
+
+
+const pausePomodoro = (btn,timeout)=>{
+    btn.addEventListener('click',()=>{
+        clearInterval(timeout)
+        btn.classList.add('btnpause')
+    })
+}
+
+const startPomodoro  = ()=>{
     
     let time = document.querySelector('.pomodoro-time')
     let btnStart = document.querySelector('#start-button')
@@ -15,10 +25,8 @@ const pomodoroInterface  = ()=>{
         btnPause.disabled = false
         btnPause.classList.remove('btnpause')
 
-        btnPause.addEventListener('click',()=>{
-            clearInterval(timeout)
-            btnPause.classList.add('btnpause')
-        })
+        
+       
         
         let timePomodoro = time.textContent
             timePomodoro = timePomodoro.split(':')
@@ -36,6 +44,7 @@ const pomodoroInterface  = ()=>{
                     time.innerHTML = `${(minute < 10)? "0"+minute : minute} : ${(second < 10)? "0"+second : second}` 
                         
                 },10) 
+                pausePomodoro(btnPause,timeout)
     })
 }
 
@@ -63,7 +72,7 @@ const HomeView = {
     },
 
     afterRender: ()=>{
-        pomodoroInterface()
+        startPomodoro()
     }
 }
 export default HomeView
