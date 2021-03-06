@@ -1,7 +1,14 @@
 import data from '../data.js'
 
 
-
+const referencesElements = ()=> {
+    return ({
+        time: document.querySelector('.pomodoro-time'),
+        btnStart: document.querySelector('#start-button'),
+        btnPause: document.querySelector('#pause-button')
+    })
+    
+}
 
 const pausePomodoro = (btn,timeout)=>{
     btn.addEventListener('click',()=>{
@@ -10,11 +17,13 @@ const pausePomodoro = (btn,timeout)=>{
     })
 }
 
+const shotBreak = ()=>{
+
+}
+
 const startPomodoro  = ()=>{
+    let {time,btnPause,btnStart} = referencesElements()
     
-    let time = document.querySelector('.pomodoro-time')
-    let btnStart = document.querySelector('#start-button')
-    let btnPause = document.querySelector('#pause-button')
     time.innerHTML = `${data.pomodoro.min} : ${data.pomodoro.second}`
 
     btnPause.disabled = true
@@ -23,10 +32,7 @@ const startPomodoro  = ()=>{
     btnStart.addEventListener('click',()=>{
         
         btnPause.disabled = false
-        btnPause.classList.remove('btnpause')
-
-        
-       
+        btnPause.classList.remove('btnpause')       
         
         let timePomodoro = time.textContent
             timePomodoro = timePomodoro.split(':')
@@ -72,7 +78,8 @@ const HomeView = {
     },
 
     afterRender: ()=>{
-        startPomodoro()
+        
+        startPomodoro(referencesElements)
     }
 }
 export default HomeView
