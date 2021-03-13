@@ -1,18 +1,6 @@
 import data from '../data.js'
+import Pomodoros from '../models/Pomodoros'
 
-const Pomodoros = class{
-    constructor(){
-        this.modes = ['pomodoro','shortBreak','longBreak']
-        this.currentMode = this.modes[0]
-        this.timesForLongBreak = 4
-        this.times = 0
-    }
-   setTime(){
-        ((this.times % this.timesForLongBreak) != 0) 
-        ? (this.currentMode === this.modes[0]) ? (times++,this.currentMode = this.modes[1]) : this.currentMode = this.modes[0] 
-        : this.currentMode = this.modes[2]
-    }
-}
 
 const referencesElements = ()=> {
     return ({
@@ -43,22 +31,24 @@ const startPomodoro  = (time)=>{
    
 }
 
-const modesController = (time)=>{
+const modesController = (time,pomodoros)=>{
   
     console.log(time)
-    let pomodoros = new Pomodoros()
+    console.log(pomodoros.currentMode)
+    console.log(pomodoros)
+    
     switch (pomodoros.currentMode) {
         case 'pomodoro': 
                 startPomodoro(time)
-                pomodoros.setTime()
+              
             break;
         case 'shortBreak': 
                 shortBreak(time)
-                pomodoros.setTime()
+              
         break;
         case 'longBreak': 
                 longBreak(time)
-                pomodoros.setTime()
+                
             break;
         default:
             break;
@@ -90,8 +80,8 @@ const addListeners = (time)=>{
 const timePomodoro = ({time,btnPause,btnStart})=>{
     btnPause.disabled = true
     btnPause.classList.add('btnpause')
-    
-    modesController(time)
+    let pomodoros = new Pomodoros
+    modesController(time,pomodoros)
     
     btnStart.addEventListener('click',()=>{
         
@@ -102,11 +92,10 @@ const timePomodoro = ({time,btnPause,btnStart})=>{
          console.log(timePomodoro)
             timePomodoro = timePomodoro.split(':')
         let minute,second
-        let pomodoros = new Pomodoros();
-        console.log((Number(timePomodoro[0]) == 0 && Number(timePomodoro[1] == 0))? true : false);
-        (timePomodoro[0] != 0 && timePomodoro[1] == 0)
-            ? (minute = timePomodoro[0], second = timePomodoro[1])
-            : (pomodoros.setTime(),modesController(time))
+       
+        (timePomodoro[0] == 0 && timePomodoro[1] == 0)
+            ? (modesController(time,pomodoros))
+            : (minute = timePomodoro[0], second = timePomodoro[1])
         
          let timeout = setInterval(()=>{
 
@@ -114,7 +103,7 @@ const timePomodoro = ({time,btnPause,btnStart})=>{
                                   : (second == 0) ? (minute--,second='59') : second--
                                   
                     time.innerHTML = `${(minute < 10)? "0"+minute : minute} : ${(second < 10)? "0"+second : second}` 
-                        
+                    if(minute == '00' && second == '00') {pomodoros.setTime(),modesController(time,pomodoros)} 
                 },10) 
                 pausePomodoro(btnPause,timeout)             
     })
