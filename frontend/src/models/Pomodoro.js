@@ -10,7 +10,7 @@ class Pomodoro{
 	}
 
 	endSession(){
-        
+        console.log(this.currentMode + ' '+ this.session)
 		//verifica se a sessão atual não é uma pausa longa
 		if(this.session === 0 || this.session % this.cycle !== 0 || this.currentMode === this.mode[2]){
 			if(this.currentMode === this.mode[0]){

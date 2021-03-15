@@ -4,36 +4,47 @@ class ModeManager{
 		this.modes = reference.modes
 		this.time = reference.time
 
+		this.triggerMode()
+
 		this.addListenerBtnPomodoro(this.modes)
 	    this.addListenerBtnShortBreak(this.modes)
 		this.addListenerBtnLongBreak(this.modes)
 
-        this.triggerMode()
 	}
 
 	addListenerBtnPomodoro({btnPomodoroMode}){
-		btnPomodoroMode.addEventListener('click',this.pomodoroMode)
+		btnPomodoroMode.addEventListener('click',()=>{
+			this.pomodoroMode()
+			this.pomodoro.currentMode = this.pomodoro.mode[0]
+		})
 	}
 
 	addListenerBtnShortBreak({btnShortBreak}){
-		btnShortBreak.addEventListener('click',this.shortBreakMode)
+		
+		btnShortBreak.addEventListener('click',()=> {
+			this.shortBreakMode()
+			this.pomodoro.currentMode = this.pomodoro.mode[1]
+		})
 	}
 
 	addListenerBtnLongBreak({btnLongBreak}){
-		btnLongBreak.addEventListener('click',this.longBreakMode)
+		btnLongBreak.addEventListener('click',()=>{
+			this.longBreakMode()
+			this.pomodoro.currentMode = this.pomodoro.mode[2]
+		})
 	}
 
-	pomodoroMode(){
-        setTimeout(()=>this.time.innerHTML = `${this.pomodoro.pomodoro.min} : ${this.pomodoro.pomodoro.second}`
+	pomodoroMode = ()=>{
+       	setTimeout(()=>this.time.innerHTML = `${this.pomodoro.pomodoro.min} : ${this.pomodoro.pomodoro.second}`
         ,100)
     }
 
-	shortBreakMode(){
-        setTimeout(()=>this.time.innerHTML = `${this.pomodoro.shortBreak.min} : ${this.pomodoro.shortBreak.second}`
+	shortBreakMode = ()=>{
+		setTimeout(()=>this.time.innerHTML = `${this.pomodoro.shortBreak.min} : ${this.pomodoro.shortBreak.second}`
         ,100)
 	}
-	longBreakMode(){
-   		setTimeout(()=>this.time.innerHTML = `${this.pomodoro.longBreak.min} : ${this.pomodoro.longBreak.second}`,100)
+	longBreakMode = ()=>{
+		setTimeout(()=>this.time.innerHTML = `${this.pomodoro.longBreak.min} : ${this.pomodoro.longBreak.second}`,100)
 	}
 
     auxTimeout(el){
@@ -42,7 +53,6 @@ class ModeManager{
     }
 
     triggerMode(){
-        console.log(this.pomodoro.currentMode)
         switch(this.pomodoro.currentMode){
 			case 'pomodoro':
                 this.pomodoroMode()
