@@ -23,14 +23,15 @@ class Chronometer{
 	startTime = ()=>{
 		this.enableBtnPause()
         this.updateDate()
-        
-        this.timeout = setInterval(()=>{
-        (this.minute == 0) ? ((this.second == 0) ? (this.pauseTime(this.timeout),this.modeManager.changeMode()) : this.second-- ) 
-                        : (this.second == 0) ? (this.minute--,this.second='59') : this.second--
-                        
-        this.time.innerHTML = `${(this.minute < 10)? "0"+this.minute : this.minute} : ${(this.second < 10)? "0"+this.second : this.second}` 
-    
-   		 },10) 
+        if(!this.timeout){
+			this.timeout = setInterval(()=>{
+			(this.minute == 0) ? ((this.second == 0) ? (this.pauseTime(this.timeout),this.modeManager.changeMode()) : this.second-- ) 
+							: (this.second == 0) ? (this.minute--,this.second='59') : this.second--
+							
+			this.time.innerHTML = `${(this.minute < 10)? "0"+this.minute : this.minute} : ${(this.second < 10)? "0"+this.second : this.second}` 
+		
+			},10) 
+		}
 	}
 
 	enableBtnPause(){
