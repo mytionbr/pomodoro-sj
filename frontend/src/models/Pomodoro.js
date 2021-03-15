@@ -10,14 +10,17 @@ class Pomodoro{
 	}
 
 	endSession(){
-        console.log(this.session)
+        
 		//verifica se a sessão atual não é uma pausa longa
-		if(this.session === 0 || this.session % this.cycle !== 0){
+		if(this.session === 0 || this.session % this.cycle !== 0 || this.currentMode === this.mode[2]){
 			if(this.currentMode === this.mode[0]){
 				// só irá valer como sessão o modo pomodoro
 				// outros modos, como a pausa curta e longa não contaram como sessão
 				this.session++
-				this.currentMode = this.mode[1]
+                (this.session % this.cycle !== 0) 
+					?  this.currentMode = this.mode[1] 
+					: this.currentMode = this.mode[2]
+				
 			}
 			else{
 				this.currentMode = this.mode[0]

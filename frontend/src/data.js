@@ -1,10 +1,10 @@
 export default {
     pomodoro: {
-        min: '02',
+        min: '05',
         second: '00'
     },
     shortBreak: {
-        min: '05',
+        min: '01',
         second: '00'
     },
     longBreak: {
