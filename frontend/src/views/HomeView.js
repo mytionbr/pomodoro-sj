@@ -1,8 +1,8 @@
 import data from '../data.js'
-import MainController from '../models/MainController.js'
-import Chronometer from '../models/Chronometer.js'
-import Pomodoro from '../models/Pomodoro.js'
-import ModeManager from '../models/ModeManager.js'
+import MainController from '../models/home/MainController.js'
+import Chronometer from '../models/home/Chronometer.js'
+import Pomodoro from '../models/home/Pomodoro.js'
+import ModeManager from '../models/home/ModeManager.js'
 
 
 const HomeView = {
