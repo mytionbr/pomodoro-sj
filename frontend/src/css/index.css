@@ -9,6 +9,7 @@
 	--bg-red-dack:#E83633;
 	--bg-green:#87D043;
 	--bg-purple:#8C43D0;
+	--main-color: var(--bg-red)
 }
 
 *{
@@ -35,7 +36,7 @@ body{
 }
 header{
 	grid-area: header;
-	background-color: var(--bg-red);
+	background-color: var(--main-color);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -77,7 +78,7 @@ main{
 .pomodoro-container{
 	height: 25rem;
 	width: 70rem;
-	background-color: var(--bg-red);
+	background-color: var(--main-color);
 	border-radius: 1rem;
 	display: flex;
 	flex-direction: column ;
@@ -147,7 +148,7 @@ main{
 }
 footer{
 	grid-area: footer;
-	background-color: var(--bg-red);
+	background-color: var(--main-color);
 	display: flex;
 	justify-content: center;
 	align-items: center;

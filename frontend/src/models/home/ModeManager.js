@@ -1,14 +1,17 @@
+import ColorManeger from '../../util/ColorManeger.js'
+
 class ModeManager{
 	constructor(pomodoro,reference){
 		this.pomodoro = pomodoro
 		this.modes = reference.modes
 		this.time = reference.time
-
+		this.colorManeger = new ColorManeger()
 		this.triggerMode()
-
 		this.addListenerBtnPomodoro(this.modes)
 	    this.addListenerBtnShortBreak(this.modes)
 		this.addListenerBtnLongBreak(this.modes)
+		
+		
 
 	}
 
@@ -16,11 +19,11 @@ class ModeManager{
 		btnPomodoroMode.addEventListener('click',()=>{
 			this.pomodoroMode()
 			this.pomodoro.currentMode = this.pomodoro.mode[0]
+			
 		})
 	}
 
 	addListenerBtnShortBreak({btnShortBreak}){
-		
 		btnShortBreak.addEventListener('click',()=> {
 			this.shortBreakMode()
 			this.pomodoro.currentMode = this.pomodoro.mode[1]
@@ -35,20 +38,30 @@ class ModeManager{
 	}
 
 	pomodoroMode = ()=>{
-       	setTimeout(()=>this.time.innerHTML = `${this.pomodoro.pomodoro.min} : ${this.pomodoro.pomodoro.second}`
-        ,100)
+
+       	setTimeout(()=>{
+			   this.time.innerHTML = `${this.pomodoro.pomodoro.min} : ${this.pomodoro.pomodoro.second}`
+			   this.colorManeger.changeBackground('pomodoro')
+			}
+        ,10)
     }
 
 	shortBreakMode = ()=>{
-		setTimeout(()=>this.time.innerHTML = `${this.pomodoro.shortBreak.min} : ${this.pomodoro.shortBreak.second}`
-        ,100)
+		setTimeout(()=>{
+			this.time.innerHTML = `${this.pomodoro.shortBreak.min} : ${this.pomodoro.shortBreak.second}`
+			this.colorManeger.changeBackground('shortBreak')
+		}
+        ,10)
 	}
 	longBreakMode = ()=>{
-		setTimeout(()=>this.time.innerHTML = `${this.pomodoro.longBreak.min} : ${this.pomodoro.longBreak.second}`,100)
+		setTimeout(()=>{
+			this.time.innerHTML = `${this.pomodoro.longBreak.min} : ${this.pomodoro.longBreak.second}`
+			this.colorManeger.changeBackground('longBreak')
+		}
+		,10)
 	}
 
     auxTimeout(el){
-        console.log('sadffffffffffffffff')
         setTimeout(()=>el,100)
     }
 
