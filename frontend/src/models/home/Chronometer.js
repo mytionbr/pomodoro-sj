@@ -9,7 +9,8 @@ class Chronometer{
 		this.modeManager = modeManager
 		this.timeout = null
         
-                 
+        this.modeManager.pause(this.pauseTime)
+
 		this.handleStartButton()
 		this.handlePauseTime()
 	}
@@ -45,7 +46,8 @@ class Chronometer{
     	this.btnPause.classList.add('btnpause')
 	}
 
-	pauseTime(){
+	pauseTime = ()=>{
+		
 		 if(this.timeout){
 		 	clearInterval(this.timeout)
 		 	this.timeout = null

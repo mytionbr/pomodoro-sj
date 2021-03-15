@@ -1,5 +1,6 @@
 import ColorManeger from '../../util/ColorManeger.js'
 
+
 class ModeManager{
 	constructor(pomodoro,reference){
 		this.pomodoro = pomodoro
@@ -11,20 +12,25 @@ class ModeManager{
 	    this.addListenerBtnShortBreak(this.modes)
 		this.addListenerBtnLongBreak(this.modes)
 		
-		
+		this.pauseTime = null
 
+	}
+
+	pause(funcPause){
+		this.pauseTime = ()=> funcPause()
 	}
 
 	addListenerBtnPomodoro({btnPomodoroMode}){
 		btnPomodoroMode.addEventListener('click',()=>{
+			this.pauseTime()
 			this.pomodoroMode()
 			this.pomodoro.currentMode = this.pomodoro.mode[0]
-			
 		})
 	}
 
 	addListenerBtnShortBreak({btnShortBreak}){
 		btnShortBreak.addEventListener('click',()=> {
+			this.pauseTime()
 			this.shortBreakMode()
 			this.pomodoro.currentMode = this.pomodoro.mode[1]
 		})
@@ -32,6 +38,7 @@ class ModeManager{
 
 	addListenerBtnLongBreak({btnLongBreak}){
 		btnLongBreak.addEventListener('click',()=>{
+			this.pauseTime()
 			this.longBreakMode()
 			this.pomodoro.currentMode = this.pomodoro.mode[2]
 		})
