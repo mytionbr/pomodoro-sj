@@ -1,6 +1,9 @@
 import data from '../data.js'
-import Pomodoros from '../models/Pomodoros'
+import Pomodoros from '../models/Pomodoros.js'
 
+
+let pomodoros = new Pomodoros()
+let timeout
 
 const referencesElements = ()=> {
     return ({
@@ -31,12 +34,8 @@ const startPomodoro  = (time)=>{
    
 }
 
-const modesController = (time,pomodoros)=>{
+const modesController = (time)=>{
   
-    console.log(time)
-    console.log(pomodoros.currentMode)
-    console.log(pomodoros)
-    
     switch (pomodoros.currentMode) {
         case 'pomodoro': 
                 startPomodoro(time)
@@ -54,11 +53,11 @@ const modesController = (time,pomodoros)=>{
             break;
     } 
 
-    addListeners(time)
+    
 
 }
 
-const addListeners = (time)=>{
+const addListeners = ({time})=>{
     let btnPomodoro = document.querySelector('#pomodoro-mode')
     let btnShortBreack = document.querySelector('#pausa-curta-mode')
     let btnLongBreack = document.querySelector('#pausa-longa-mode')
@@ -74,14 +73,30 @@ const addListeners = (time)=>{
     })
 }
 
+const handleStopTime = (timeout)=>{
+    console.log('mais de uma vez')
+    pomodoros.setTime()
+    modesController(time)
+    clearInterval(timeout)   
+}
 
+const handleStartTime = (time,btnPause,minute,second)=>{
+    let timeout = setInterval(()=>{
+        (minute == 0) ? ((second == 0) ? (handleStopTime(timeout)) : second-- ) 
+                        : (second == 0) ? (minute--,second='59') : second--
+                        
+        time.innerHTML = `${(minute < 10)? "0"+minute : minute} : ${(second < 10)? "0"+second : second}` 
+    
+    },100) 
+    pausePomodoro(btnPause,timeout)
+}
 
 
 const timePomodoro = ({time,btnPause,btnStart})=>{
     btnPause.disabled = true
     btnPause.classList.add('btnpause')
-    let pomodoros = new Pomodoros
-    modesController(time,pomodoros)
+    
+    modesController(time)
     
     btnStart.addEventListener('click',()=>{
         
@@ -89,23 +104,14 @@ const timePomodoro = ({time,btnPause,btnStart})=>{
         btnPause.classList.remove('btnpause')       
        
         let timePomodoro = time.textContent
-         console.log(timePomodoro)
-            timePomodoro = timePomodoro.split(':')
-        let minute,second
-       
-        (timePomodoro[0] == 0 && timePomodoro[1] == 0)
-            ? (modesController(time,pomodoros))
-            : (minute = timePomodoro[0], second = timePomodoro[1])
-        
-         let timeout = setInterval(()=>{
 
-                    (minute == 0) ? ((second == 0) ? clearInterval(timeout) : second-- ) 
-                                  : (second == 0) ? (minute--,second='59') : second--
-                                  
-                    time.innerHTML = `${(minute < 10)? "0"+minute : minute} : ${(second < 10)? "0"+second : second}` 
-                    if(minute == '00' && second == '00') {pomodoros.setTime(),modesController(time,pomodoros)} 
-                },10) 
-                pausePomodoro(btnPause,timeout)             
+        timePomodoro = timePomodoro.split(':')
+
+        let minute = Number(timePomodoro[0])
+        let second = Number(timePomodoro[1])
+              
+        handleStartTime(time,btnPause,minute,second)
+              
     })
 }
 
@@ -118,11 +124,11 @@ const HomeView = {
         return `
         <div class="pomodoro-container">
         <div class="pomodoro-options">
-            <button id='pomodoro-mode' data-active="true">Pomodoro</button>
-            <button id='pausa-curta-mode'  data-active="false">Pausa curta</button>
-            <button id='pausa-longa-mode' data-active="false">Pausa longa</button>
+            <button id='pomodoro-mode'>Pomodoro</button>
+            <button id='pausa-curta-mode'>Pausa curta</button>
+            <button id='pausa-longa-mode'>Pausa longa</button>
         </div>
-        <div class="pomodoro-time">
+        <div class="pomodoro-time" id="pomodoro-time">
             60 : 00
         </div>
         <div class="pomodoro-tasks">Trabalho</div>
@@ -137,7 +143,7 @@ const HomeView = {
     afterRender: ()=>{
         let elements = referencesElements()
         timePomodoro(elements)
-        
+        addListeners(elements)
 
     }
 }
