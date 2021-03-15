@@ -10,6 +10,7 @@
 	--bg-green:#87D043;
 	--bg-purple:#8C43D0;
 	--main-color: var(--bg-red)
+	--main-color-effect: var(--bg-red-dack)
 }
 
 *{
@@ -112,7 +113,7 @@ main{
 	border-radius: 0 10px 0 0 ;
 }
 .pomodoro-options button:hover{
-	background-color: var(--bg-red-dack);
+	background-color: var(--main-color-effect:);
 }
 .pomodoro-time{
 	display: flex;
@@ -144,8 +145,14 @@ main{
 	cursor: pointer;
 }
 .pomodoro-buttons button:hover{
-	background-color: var(--bg-red-dack);
+	background-color: var(--main-color-effect);
 }
+
+.pomodoro-buttons button:focus,.pomodoro-options button:focus{
+	outline: none;
+  	box-shadow: none;
+}
+
 footer{
 	grid-area: footer;
 	background-color: var(--main-color);
