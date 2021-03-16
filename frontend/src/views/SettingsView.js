@@ -16,6 +16,14 @@ const SettingsView = class {
        
     }
 
+    renderComponent =()=>{
+        switch (this.state.component) {
+            case "cronometro": return ChronometerSetting.render()
+            case "aplicacao": return ApplicationSetting.render()
+            case "notificacao": return NotificationsSetting.render()
+        }
+    }
+
     render =  () => {
         const request = parseRequestUrl()
         this.state.component = request.action
@@ -29,14 +37,7 @@ const SettingsView = class {
             <div class="menu-section" id="option-motifications"><a href="/#/configuracoes/notificacao"><i class="far fa-bell"></i> Notificações</a></div>
         </div>
        
-        ${
-            (this.state.component === 'cronometro') 
-            ? ChronometerSetting.render()
-            : (state.component === 'aplicação')
-            ? ApplicationSetting.render()
-            : NotificationsSetting.render()
-
-        }
+        ${this.renderComponent()}
        
         </div>
         `
