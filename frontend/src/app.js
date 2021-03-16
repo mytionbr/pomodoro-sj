@@ -4,12 +4,14 @@ import Error404View from "./views/Error404View.js"
 import HomeView from "./views/HomeView.js"
 import SettingsView from "./views/SettingsView.js"
 import TasksView from "./views/TasksView.js"
+import UserView from "./views/UserView.js"
 
 
 const routes= {
     '/': HomeView,
     '/configuracoes/:action': SettingsView,
-    '/tarefas': TasksView
+    '/tarefas': TasksView,
+    '/usuario': UserView
 }
 
 const router = ()=>{
