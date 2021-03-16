@@ -3,9 +3,9 @@ const SettingsView = {
         return `
         <div class="container-config">
         <div class="menu-config">
-            <div class="menu-section" id="option-chronometer">Cronômetro</div>
-            <div class="menu-section" id="option-aplication">Aplicação</div>
-            <div class="menu-section" id="option-motifications">Notificações</div>
+            <div class="menu-section" id="option-chronometer"><i class="fas fa-stopwatch"></i> Cronômetro</div>
+            <div class="menu-section" id="option-aplication"><i class="fas fa-desktop"></i> Aplicação</div>
+            <div class="menu-section" id="option-motifications"><i class="far fa-bell"></i> Notificações</div>
         </div>
             <div class="row">
                 <div class="container-input">

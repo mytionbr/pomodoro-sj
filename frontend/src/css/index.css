@@ -29,7 +29,9 @@ html{
 body{
 	height: 100vh;
 }
-
+i{
+	margin-right: 0.5rem;
+}
 .grid-container{
 	display: grid;
 	grid-template-areas: 'header' 'main' 'footer';
