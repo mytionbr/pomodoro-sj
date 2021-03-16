@@ -39,11 +39,11 @@ body{
 }
 header{
 	grid-area: header;
-	background-color: var(--main-color);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 10px;
+	
 }
 header .brand{
 	font-size: 1.4rem;
@@ -78,10 +78,19 @@ main{
 	align-items: center;
 }
 
+header, .pomodoro-container, footer{
+	background-color: var(--main-color);
+	transition: background-color 0.5s ease-in-out;
+}
+
+.pomodoro-options button:hover, .pomodoro-buttons button:hover {
+	background-color: var(--main-color-effect);
+	transition: background-color 0.5s ease-in-out;
+}
+
 .pomodoro-container{
 	height: 25rem;
 	width: 70rem;
-	background-color: var(--main-color);
 	border-radius: 1rem;
 	display: flex;
 	flex-direction: column ;
@@ -114,9 +123,7 @@ main{
 .pomodoro-options button:nth-child(3){
 	border-radius: 0 10px 0 0 ;
 }
-.pomodoro-options button:hover{
-	background-color: var(--main-color-effect);
-}
+
 .pomodoro-time{
 	display: flex;
 	align-items: center;
@@ -146,9 +153,6 @@ main{
 	margin-left: 2rem;
 	cursor: pointer;
 }
-.pomodoro-buttons button:hover{
-	background-color: var(--main-color-effect);
-}
 
 .pomodoro-buttons button:focus,.pomodoro-options button:focus{
 	outline: none;
@@ -157,7 +161,6 @@ main{
 
 footer{
 	grid-area: footer;
-	background-color: var(--main-color);
 	display: flex;
 	justify-content: center;
 	align-items: center;

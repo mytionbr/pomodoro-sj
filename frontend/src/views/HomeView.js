@@ -30,8 +30,6 @@ const HomeView = {
 
     afterRender: ()=>{
         let mainController = new MainController(data,Pomodoro,ModeManager,Chronometer)
-        
-
     }
 }
 export default HomeView
