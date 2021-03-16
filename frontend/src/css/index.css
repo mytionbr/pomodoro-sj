@@ -250,6 +250,10 @@ input[type=number] {
 }
 
 .menu-section:hover{
+	color:#e6dfdf
+}
+
+.menu-section-selector{
 	border-bottom: 0.2rem solid #ffffff;
 }
 
