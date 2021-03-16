@@ -10,6 +10,8 @@ class Chronometer{
 		this.timeout = null
         
         this.modeManager.pause(this.pauseTime)
+		
+		this.disabledBtnPause()
 
 		this.handleStartButton()
 		this.handlePauseTime()

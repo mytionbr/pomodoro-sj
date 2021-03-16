@@ -6,11 +6,13 @@
 	--bg-white:#ffffff;
 	--bg-grey:#757575;
 	--bg-main:#30384b;
-	--bg-red-dack:#E83633;
-	--bg-green:#87D043;
+	--bg-red-dark:#E83633;
+	--bg-green:#3eb640;
+	--bg-green-dark:#39a33b;
 	--bg-purple:#8C43D0;
-	--main-color: var(--bg-red)
-	--main-color-effect: var(--bg-red-dack)
+	--bg-purple-dark:#7f40b9;
+	--main-color: var(--bg-red);
+	--main-color-effect: var(--bg-purple-dark);
 }
 
 *{
@@ -113,7 +115,7 @@ main{
 	border-radius: 0 10px 0 0 ;
 }
 .pomodoro-options button:hover{
-	background-color: var(--main-color-effect:);
+	background-color: var(--main-color-effect);
 }
 .pomodoro-time{
 	display: flex;
