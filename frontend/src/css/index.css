@@ -252,3 +252,8 @@ input[type=number] {
 .menu-section:hover{
 	border-bottom: 0.2rem solid #ffffff;
 }
+
+.menu-section a{
+	text-decoration: none;
+	color: var(--bg-white);
+}
