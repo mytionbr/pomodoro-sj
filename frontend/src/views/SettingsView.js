@@ -1,8 +1,15 @@
 const SettingsView = {
     render: () => {
         return `
-        <h1>Configurações<h1>
+            <div class="container-config">
+                <form>
+                    <la
+                </form>
+            </div>
         `
+    },
+    afterRender(){
+
     }
 }
 export default SettingsView
