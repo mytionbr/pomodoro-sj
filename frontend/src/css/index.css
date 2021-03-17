@@ -12,7 +12,7 @@
   --bg-purple: #8c43d0;
   --bg-purple-dark: #7f40b9;
   --main-color: var(--bg-red);
-  --main-color-effect: var(--bg-purple-dark);
+  --main-color-effect: var(--bg-red-dark);
   --pomodoro-theme-color: var(--bg-red);
   --short-break-theme-color: var(--bg-green);
   --long-break-theme-color: var(--bg-purple);
@@ -412,3 +412,86 @@ input:checked + .slider:before {
 	background-color: #ffffffad;
 }
 
+/*todo list*/
+
+.todo_list{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 90rem;
+  background-color: #d04643;
+  padding: 1rem 2rem 2rem 1rem;
+  border-radius: 1rem;
+}
+
+.todo_list .title{
+  font-size: 3.5rem;
+  color: #ffffff;
+  text-align: center;
+  border-bottom: 0.3rem solid #ffffff;
+  width: 100%;  
+}
+
+#form_task{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1.5rem;
+  width: 81rem;
+}
+
+#form_task input{
+  padding: 0.8rem;
+  font-size: 2rem;
+  outline: none;
+  box-shadow: none;  
+}
+
+#input_category,#input_task,#btn_add_task{
+  background-color: var(--main-color);
+  border-radius: 0.5rem; 
+  border:0.3rem solid #ffffff;
+  color: #ffffff;
+}
+
+#form_task input::-webkit-input-placeholder {
+  color: var(--bg-white);
+  opacity: 0.6;
+}
+
+#form_task input:-moz-placeholder { /* Firefox 18- */
+  color: var(--bg-white);
+  opacity: 0.6;  
+}
+
+#form_task input::-moz-placeholder {  /* Firefox 19+ */
+  color: var(--bg-white);
+  opacity: 0.6;  
+}
+
+#form_task input:-ms-input-placeholder {  
+  color: var(--bg-white) -70%;  
+  opacity: 0.6;
+}
+
+#input_category{
+  width: 20rem;
+}
+#input_task{
+  width: 55rem;
+}
+#btn_add_task{
+  text-align: center;
+  width: 5rem;
+  font-size: 2.3rem;
+  cursor: pointer;
+}
+
+#btn_add_task i{
+  text-align: center;
+  width: 100%;
+}
+
+#btn_add_task:hover{
+  background-color: var(--main-color-effect);
+}
