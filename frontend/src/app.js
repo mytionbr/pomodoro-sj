@@ -4,22 +4,24 @@ import Error404View from "./views/Error404View.js"
 import HomeView from "./views/HomeView.js"
 import SettingsView from "./views/SettingsView.js"
 import TasksView from "./views/TasksView.js"
+import UserView from "./views/UserView.js"
 
 
 const routes= {
     '/': HomeView,
-    '/configuracoes': SettingsView,
-    '/tarefas': TasksView
+    '/configuracoes/:action': SettingsView,
+    '/tarefas': TasksView,
+    '/usuario': UserView
 }
 
 const router = ()=>{
     const request = parseRequestUrl()
     const parseUrl = 
-        (request.resource ? `/${request.resource}` : '/') 
-        //(request.action ? `${request.action}` : '')
-    
-    const view = routes[parseUrl] ? routes[parseUrl] : Error404View
-    
+        (request.resource ? `/${request.resource}` : '/') +
+        (request.action ? '/:action' : '')
+    console.log(parseUrl)
+    const screen = routes[parseUrl] ? routes[parseUrl] : Error404View
+    const view = new screen()
     const main = document.querySelector('.main-container')
     main.innerHTML = view.render()
     view.afterRender()

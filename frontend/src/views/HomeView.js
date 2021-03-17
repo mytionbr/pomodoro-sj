@@ -5,9 +5,9 @@ import Pomodoro from '../models/home/Pomodoro.js'
 import ModeManager from '../models/home/ModeManager.js'
 
 
-const HomeView = {
+const HomeView = class {
     
-    render: () => {
+    render = () => {
        
         return `
         <div class="pomodoro-container">
@@ -26,9 +26,9 @@ const HomeView = {
         </div>
         </div>
         `
-    },
+    }
 
-    afterRender: ()=>{
+    afterRender =  ()=>{
         let mainController = new MainController(data,Pomodoro,ModeManager,Chronometer)
     }
 }
