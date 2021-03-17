@@ -283,7 +283,7 @@ input[type=number] {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
-	margin-top: 4rem;
+	margin: 2rem 0 2rem 0;
 	width: 70rem;
 }
 
@@ -320,5 +320,6 @@ input[type=number] {
 	background-color: var(--long-break-theme-color);
 }
 
-
-
+.theme_option{
+	cursor: pointer;
+}
