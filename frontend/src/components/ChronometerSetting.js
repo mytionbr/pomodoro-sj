@@ -1,6 +1,7 @@
 const ChronometerSetting = {
     render: () =>{
         return `
+                
                 <div class="row">
                 <div class="container-input">
                     <input type="number" name="pomodoro-duration" id="pomodoro-duration">

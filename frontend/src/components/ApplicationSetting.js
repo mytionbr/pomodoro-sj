@@ -1,8 +1,9 @@
 const ApplicationSetting = {
     render: () =>{
         return `
+                 
                 <div class='container_setting_aplication'>
-                    <h2>Cor do tema:</h2>
+                <h2>Cor do tema:</h2>
                     <div class="container_theme_option">
                         <div class="theme_option" id="theme_pomodoro">
                             <div class="theme_color">
