@@ -420,7 +420,7 @@ input:checked + .slider:before {
   justify-content: space-around;
   align-items: center;
   width: 90rem;
-  background-color: #d04643;
+  background-color: var(--main-color);
   padding: 1rem 2rem 2rem 1rem;
   border-radius: 1rem;
 }
@@ -447,7 +447,7 @@ input:checked + .slider:before {
   box-shadow: none;  
 }
 
-#input_category,#input_task,#btn_add_task{
+#form_task .input_category,#form_task .input_desc,#form_task .btn_add_task{
   background-color: var(--main-color);
   border-radius: 0.5rem; 
   border:0.3rem solid #ffffff;
@@ -474,24 +474,64 @@ input:checked + .slider:before {
   opacity: 0.6;
 }
 
-#input_category{
+#form_task .input_category{
   width: 20rem;
 }
-#input_task{
+#form_task .input_desc{
   width: 55rem;
 }
-#btn_add_task{
+#form_task .btn_add_task{
   text-align: center;
   width: 5rem;
   font-size: 2.3rem;
   cursor: pointer;
 }
 
-#btn_add_task i{
+#form_task .btn_add_task i{
   text-align: center;
   width: 100%;
 }
 
-#btn_add_task:hover{
+#form_task .btn_add_task:hover{
   background-color: var(--main-color-effect);
+}
+
+#list_tasks {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.form_task{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1.5rem;
+  width: 81rem;
+}
+
+.form_tasks input{
+  padding: 0.8rem;
+  font-size: 2rem;
+  outline: none;
+  box-shadow: none; 
+  background-color: var(--main-color);
+  color: var(--bg-white);
+}
+
+.task{
+  margin-top: 1rem;
+  width: 81rem;
+  border-top: 0.1rem solid var(--bg-white);
+}
+
+.input_category_task{
+  width: 20rem;
+}
+
+.input_desc_task{
+  width: 40rem;
+}
+
+.qtd_pomo{
+  width: 5rem;
 }
