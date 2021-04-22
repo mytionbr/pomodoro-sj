@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+   <div className="body">
+      <div className="grid-container">
+      <header>
+        <div className="brand">
+          <a href="/#/"><h1>Pomodoro-SJ</h1></a>
+        </div>
+        <nav className="links">
+          <ul>
+            <li><a href="/#/configuracoes/cronometro"> <i className="fas fa-cogs"></i> Configurações</a></li>
+            <li><a href="/#/tarefas"> <i className="fas fa-tasks"></i> Tarefas</a></li>
+            <li><a href="/#/usuario"><i className="fas fa-user"></i> Usuário</a></li>
+          </ul>
+        </nav>
       </header>
+      <main className="main-container">
+      </main>
+      <footer>© 2021 Pomodoro-SJ, Inc</footer>
     </div>
+  </div>
   );
 }
 
