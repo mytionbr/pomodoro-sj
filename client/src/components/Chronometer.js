@@ -38,6 +38,10 @@ const Chronometer = (props) => {
     }
   };
 
+  const disableButton  = () =>{
+      
+  }
+
   return (
     <div className="pomodoro-container">
       <div className="pomodoro-options">

@@ -3,7 +3,7 @@ import Chronometer from '../components/Chronometer'
 const HomeScreen = () => {
     return (
        <Chronometer 
-        time={{minute:"25",second:"00"}}
+        time={{minute:"05",second:"00"}}
        />
     )
 }
