@@ -27,15 +27,21 @@ class Chronometer{
 		this.enableBtnPause()
         this.updateDate()
 		
-        if(!this.timeout){
-			this.timeout = setInterval(()=>{
-			(this.minute == 0) ? ((this.second == 0) ? (this.pauseTime(this.timeout),this.modeManager.changeMode()) : this.second-- ) 
-							: (this.second == 0) ? (this.minute--,this.second='59') : this.second--
-			console.log()
-			this.time.innerHTML = `${(this.minute < 10 && typeof this.minute === 'number' )? "0"+this.minute : this.minute} : ${(this.second < 10 && typeof this.minute === 'number' )? "0"+this.second : this.second}` 
-		
-			},100) 
-		}
+		<div className="pomodoro-container">
+        <div className="pomodoro-options">
+            <button id='pomodoro-mode'>Pomodoro</button>
+            <button id='pausa-curta-mode'>Pausa curta</button>
+            <button id='pausa-longa-mode'>Pausa longa</button>
+        </div>
+        <div className="pomodoro-time" id="pomodoro-time">
+            60 : 00
+        </div>
+        <div className="pomodoro-tasks">Trabalho</div>
+        <div className="pomodoro-buttons">
+            <button id="start-button">Começar</button>
+            <button id="pause-button">Pausar</button>
+        </div>
+        </div>
 	}
 
 	enableBtnPause(){

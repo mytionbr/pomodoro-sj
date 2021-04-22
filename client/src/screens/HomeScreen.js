@@ -1,10 +1,10 @@
-import React from 'react'
+import Chronometer from '../components/Chronometer'
 
 const HomeScreen = () => {
     return (
-        <div>
-           Home 
-        </div>
+       <Chronometer 
+        time={{minute:"25",second:"00"}}
+       />
     )
 }
 
