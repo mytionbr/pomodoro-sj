@@ -66,6 +66,7 @@ const Chronometer = (props) => {
   };
 
   const handleModeTimer = (mode)=>{
+    handlePauseTime()
     setCurrentMode(mode)
     setTime(mode.time)
   }
