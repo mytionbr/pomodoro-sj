@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-expressions*/
 import { useState } from "react";
 const Chronometer = (props) => {
+  
   const [time, setTime] = useState(props.time);
   const [intervalId, setIntervalId] = useState(null);
+  const [disableButton, setDisableButton] = useState(false)
 
   const handleStartCount = () => {
     let { minute, second } = time;
-    console.log(intervalId);
+    setDisableButton(true)
 
     if (!intervalId) {
       setIntervalId(
@@ -35,12 +37,10 @@ const Chronometer = (props) => {
     if (intervalId) {
       clearInterval(intervalId);
       setIntervalId(null);
+      setDisableButton(false)
     }
   };
 
-  const disableButton  = () =>{
-      
-  }
 
   return (
     <div className="pomodoro-container">
@@ -57,9 +57,12 @@ const Chronometer = (props) => {
         <button id="start-button" onClick={handleStartCount}>
           Começar
         </button>
-        <button id="pause-button" onClick={handlePauseTime}>
-          Pausar
-        </button>
+
+        {disableButton 
+          ? <button id="pause-button" onClick={handlePauseTime}> Pausar</button>
+          : <button id="pause-button" disabled className="btnpause"> Pausar</button>
+      }
+        
       </div>
     </div>
   );
