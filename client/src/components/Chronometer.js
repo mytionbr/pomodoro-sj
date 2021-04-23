@@ -25,7 +25,7 @@ const Chronometer = (props) => {
             minute:
               minute < 10 && typeof minute === "number" ? "0" + minute : minute,
             second:
-              second < 10 && typeof minute === "number" ? "0" + second : second,
+              second < 10 && typeof second === "number" ? "0" + second : second,
           });
         }, 100)
       );
