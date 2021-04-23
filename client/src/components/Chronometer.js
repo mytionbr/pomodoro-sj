@@ -1,14 +1,38 @@
 /* eslint-disable no-unused-expressions*/
 import { useState } from "react";
 const Chronometer = (props) => {
-  
-  const [time, setTime] = useState(props.time);
+  const modes = {
+    pomodoro: {
+      type:"pomodoro",
+      time:{
+        minute:'25',
+        second:'00'
+      }
+    },
+    shortBreak: {
+      type:"shortBreak",
+      time:{
+        minute:'05',
+        second:'00'
+      }
+    },
+    longBreak: {
+      type:"longBreak",
+      time:{
+        minute:'10',
+        second:'00'
+      }
+    },
+  };
+
+  const [time, setTime] = useState(modes.pomodoro.time);
   const [intervalId, setIntervalId] = useState(null);
-  const [disableButton, setDisableButton] = useState(false)
+  const [disableButton, setDisableButton] = useState(false);
+  const [currentMode, setCurrentMode] = useState(modes.pomodoro);
 
   const handleStartCount = () => {
     let { minute, second } = time;
-    setDisableButton(true)
+    setDisableButton(true);
 
     if (!intervalId) {
       setIntervalId(
@@ -37,17 +61,22 @@ const Chronometer = (props) => {
     if (intervalId) {
       clearInterval(intervalId);
       setIntervalId(null);
-      setDisableButton(false)
+      setDisableButton(false);
     }
   };
+
+  const handleModeTimer = (mode)=>{
+    setCurrentMode(mode)
+    setTime(mode.time)
+  }
 
 
   return (
     <div className="pomodoro-container">
       <div className="pomodoro-options">
-        <button id="pomodoro-mode">Pomodoro</button>
-        <button id="pausa-curta-mode">Pausa curta</button>
-        <button id="pausa-longa-mode">Pausa longa</button>
+        <button id="pomodoro-mode" onClick={()=>handleModeTimer(modes.pomodoro)}>Pomodoro</button>
+        <button id="pausa-curta-mode" onClick={()=>handleModeTimer(modes.shortBreak)}>Pausa curta</button>
+        <button id="pausa-longa-mode" onClick={()=>handleModeTimer(modes.longBreak)}>Pausa longa</button>
       </div>
       <div className="pomodoro-time" id="pomodoro-time">
         {`${time.minute} : ${time.second}`}
@@ -58,11 +87,17 @@ const Chronometer = (props) => {
           Começar
         </button>
 
-        {disableButton 
-          ? <button id="pause-button" onClick={handlePauseTime}> Pausar</button>
-          : <button id="pause-button" disabled className="btnpause"> Pausar</button>
-      }
-        
+        {disableButton ? (
+          <button id="pause-button" onClick={handlePauseTime}>
+            {" "}
+            Pausar
+          </button>
+        ) : (
+          <button id="pause-button" disabled className="btnpause">
+            {" "}
+            Pausar
+          </button>
+        )}
       </div>
     </div>
   );
