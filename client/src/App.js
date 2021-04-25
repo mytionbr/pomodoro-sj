@@ -15,7 +15,7 @@ function App() {
       <div className="grid-container">
       <header>
         <div className="brand">
-          <a href="/#/"><h1>Pomodoro-SJ</h1></a>
+          <Link to="/"><h1>Pomodoro-SJ</h1></Link>
         </div>
         <nav className="links">
           <ul>
