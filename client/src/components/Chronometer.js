@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-expressions*/
 import { useState } from "react";
+import ColorManager from '../util/ColorManager'
+
 const Chronometer = (props) => {
   const modes = {
     pomodoro: {
@@ -7,7 +9,7 @@ const Chronometer = (props) => {
       time:{
         minute:'25',
         second:'00'
-      }
+      },
     },
     shortBreak: {
       type:"shortBreak",
@@ -24,6 +26,8 @@ const Chronometer = (props) => {
       }
     },
   };
+
+  const colorManeger = new ColorManager
 
   const [time, setTime] = useState(modes.pomodoro.time);
   const [intervalId, setIntervalId] = useState(null);
@@ -68,6 +72,7 @@ const Chronometer = (props) => {
   const handleModeTimer = (mode)=>{
     handlePauseTime()
     setCurrentMode(mode)
+    colorManeger.changeBackground(mode.type)
     setTime(mode.time)
   }
 
