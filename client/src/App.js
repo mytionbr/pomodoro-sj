@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCogs,faTasks,faUser } from '@fortawesome/free-solid-svg-icons'
 
+import {useState} from 'react'
 import {BrowserRouter as Router,Switch,Route,Link} from 'react-router-dom' 
 
 import HomeScreen from './screens/HomeScreen'
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/tarefas" component={TasksScreen}/>
           <Route exact path="/usuario" component={UserScreen}/>
           <Route path="/configuracoes/cronometro" component={SettingsScreen}/>
+          <Route path="*" component={Error404} />
         </Switch>
       </main>
       <footer>© 2021 Pomodoro-SJ, Inc</footer>
