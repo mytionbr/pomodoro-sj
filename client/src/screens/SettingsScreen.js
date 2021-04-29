@@ -10,17 +10,30 @@ const SettingsScreen = (props) => {
     const initialSetting = "cronometro"
     
     const [currentSetting,setCurrentSetting] = useState(initialSetting)
-    const [currentBtnOption,setCurrentBtnOption] = useState(null)
-    let btnsOptions = null
+    let btnsOptions = {
+            option_chronometer: '',
+            option_aplication: '',
+            option_notifications: '',
+    }
 
     useEffect(()=>{
        setCurrentSetting(props.match.params.setting)
-       btnsOptions = document.querySelectorAll(".menu-section")
-       console.log(btnsOptions)
+
+       btnsOptions.option_chronometer = document.querySelector("#option_chronometer")
+       btnsOptions.option_aplication = document.querySelector("#option_aplication")
+       btnsOptions.option_notifications = document.querySelector("#option_motifications")
     })
+
+    const removeSelectorStyle = ()=>{
+       for (let prop in btnsOptions) {
+              console.log(btnsOptions[prop])
+              btnsOptions[prop].classList.remove('menu-section-selector')
+        }
+    }
     
-    const handleSelectOption = async (e)=>{
-        e.target.classList.add('menu-section-selector')
+    const handleSelectOption = (e)=>{
+        removeSelectorStyle()
+        e.target.parentNode.classList.add('menu-section-selector')
     }
 
     const getSetting = current =>{
