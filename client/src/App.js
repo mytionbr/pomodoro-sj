@@ -31,7 +31,7 @@ function App() {
           <Route exact path={['/',"/home"]} component={HomeScreen}/>
           <Route exact path="/tarefas" component={TasksScreen}/>
           <Route exact path="/usuario" component={UserScreen}/>
-          <Route path="/configuracoes/cronometro" component={SettingsScreen}/>
+          <Route path="/configuracoes/:setting" component={SettingsScreen}/>
           <Route path="*" component={Error404} />
         </Switch>
       </main>
