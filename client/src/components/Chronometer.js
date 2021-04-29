@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions*/
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import ColorManager from '../util/ColorManager'
 
 const Chronometer = (props) => {
@@ -34,6 +34,12 @@ const Chronometer = (props) => {
   const [disableButton, setDisableButton] = useState(false);
   const [currentMode, setCurrentMode] = useState(modes.pomodoro);
 
+  useEffect(()=>{
+   
+  })
+
+
+
   const handleStartCount = () => {
     let { minute, second } = time;
     setDisableButton(true);
@@ -49,12 +55,16 @@ const Chronometer = (props) => {
             ? (minute--, (second = "59"))
             : second--;
 
+
+          document.title =  `${minute} : ${second} | pomodoro-js`
+
           setTime({
             minute:
               minute < 10 && typeof minute === "number" ? "0" + minute : minute,
             second:
               second < 10 && typeof second === "number" ? "0" + second : second,
           });
+         
         }, 100)
       );
     }

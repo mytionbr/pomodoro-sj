@@ -11,15 +11,16 @@ const SettingsScreen = (props) => {
     
     const [currentSetting,setCurrentSetting] = useState(initialSetting)
     const [currentBtnOption,setCurrentBtnOption] = useState(null)
-    
+    let btnsOptions = null
+
     useEffect(()=>{
        setCurrentSetting(props.match.params.setting)
+       btnsOptions = document.querySelectorAll(".menu-section")
+       console.log(btnsOptions)
     })
     
-    const onSelectOption = (e)=>{
-        console.log(e.target)
-        setCurrentBtnOption(e.target)
-        currentBtnOption.classList.add('menu-section-selector')
+    const handleSelectOption = async (e)=>{
+        e.target.classList.add('menu-section-selector')
     }
 
     const getSetting = current =>{
@@ -39,9 +40,9 @@ const SettingsScreen = (props) => {
     return (
         <div className="container-config">
         <div className="menu-config">
-            <div onClick={onSelectOption} className="menu-section" id="option_chronometer"><Link to="/configuracoes/cronometro"> <i className="fas fa-stopwatch"></i> Cronômetro</Link></div>
-            <div onClick={onSelectOption} className="menu-section" id="option_aplication"><Link to="/configuracoes/aplicacao"><i className="fas fa-desktop"></i> Aplicação</Link></div>
-            <div onClick={onSelectOption} className="menu-section" id="option_motifications"><Link to="/configuracoes/notificacao"><i className="far fa-bell"></i> Notificações</Link></div>
+            <div onClick={handleSelectOption} className="menu-section" id="option_chronometer"><Link to="/configuracoes/cronometro"> <i className="fas fa-stopwatch"></i> Cronômetro</Link></div>
+            <div onClick={handleSelectOption} className="menu-section" id="option_aplication"><Link to="/configuracoes/aplicacao"><i className="fas fa-desktop"></i> Aplicação</Link></div>
+            <div onClick={handleSelectOption} className="menu-section" id="option_motifications"><Link to="/configuracoes/notificacao"><i className="far fa-bell"></i> Notificações</Link></div>
         </div>
        
         <div id="setting_main"></div>

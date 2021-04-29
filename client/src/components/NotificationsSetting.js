@@ -26,7 +26,7 @@ const NotificationsSetting = () => {
           <label className="label_input" htmlFor="activate_alarm">
             Toque da notificação:
           </label>
-          <div classNameName="select_sound">
+          <div className="select_sound">
             <select>
               <option value="0">Select car:</option>
               <option value="1">Audi</option>
