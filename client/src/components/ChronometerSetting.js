@@ -7,20 +7,33 @@ const ChronometerSetting = ({ settings, setSettings }) => {
   const [sessions, setSessions] = useState(settings.sessions);
 
   const handleChangePomodoroTime = (e) => {
+    let value = e.target.value
     setPomodoro({ ...pomodoro, time: { minute: e.target.value } });
+    
+    if(value !== '0') saveSetting(pomodoro)
   };
 
   const handleChangeShortBreakTime = (e) => {
+    let value = e.target.value
     setShortBreak({ ...shortBreak, time: { minute: e.target.value } });
+    if(value !== '0') saveSetting(shortBreak)
   };
 
   const handleChangeLongBreakTime = (e) => {
+    let value = e.target.value
     setLongBreak({ ...longBreak, time: { minute: e.target.value } });
+    if(value !== '0') saveSetting(longBreak)
   };
 
   const handleChangeSession = (e) => {
+    let value = e.target.value
     setSessions({ ...sessions, longBreakSessions: e.target.value });
+    if(value !== '0') saveSetting(sessions)
   };
+
+  const saveSetting = (element)=>{
+    setSettings({...sessions,[element.type]:element})
+  }
 
   return (
     <div>
