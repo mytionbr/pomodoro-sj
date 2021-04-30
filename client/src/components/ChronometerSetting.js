@@ -6,33 +6,34 @@ const ChronometerSetting = ({ settings, setSettings }) => {
   const [longBreak, setLongBreak] = useState(settings.longBreak);
   const [sessions, setSessions] = useState(settings.sessions);
 
-  const handleChangePomodoroTime = (e) => {
-    let value = e.target.value
-    setPomodoro({ ...pomodoro, time: { minute: e.target.value } });
-    
-    if(value !== '0') saveSetting(pomodoro)
+  const handleChangePomodoroTime = async (e) => {
+    await setPomodoro({ ...pomodoro, time: {minute: e.target.value, second: '00'} });
+    await console.log(pomodoro.time.minute)
+    if(e.target.value !== '0'){ saveSetting(pomodoro)}
   };
+
+  console.log(sessions)
 
   const handleChangeShortBreakTime = (e) => {
     let value = e.target.value
-    setShortBreak({ ...shortBreak, time: { minute: e.target.value } });
+    setShortBreak({ ...shortBreak, time: { minute: e.target.value,second:'00' } });
     if(value !== '0') saveSetting(shortBreak)
   };
 
   const handleChangeLongBreakTime = (e) => {
     let value = e.target.value
-    setLongBreak({ ...longBreak, time: { minute: e.target.value } });
+    setLongBreak({ ...longBreak, time: { minute: e.target.value, second:'00' } });
     if(value !== '0') saveSetting(longBreak)
   };
 
   const handleChangeSession = (e) => {
     let value = e.target.value
-    setSessions({ ...sessions, longBreakSessions: e.target.value });
+    setSessions({ ...sessions, longBreakSessions: e.target.value,second:'00' });
     if(value !== '0') saveSetting(sessions)
   };
 
   const saveSetting = (element)=>{
-    setSettings({...sessions,[element.type]:element})
+    setSettings({...settings,[element.type]:element})
   }
 
   return (

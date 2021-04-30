@@ -19,8 +19,6 @@ const SettingsScreen = ({ match, settings, setSettings }) => {
 
   useEffect(() => {
     setCurrentSetting(match.params.setting);
-
-    console.log(settings);
   });
 
   const getSetting = (current) => {
