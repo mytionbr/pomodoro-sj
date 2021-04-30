@@ -13,7 +13,7 @@ const settings = {
   shortBreak: {
     type: "shortBreak",
     time: {
-      minute: "05",
+      minute: "5",
       second: "00",
     },
     background: {
@@ -32,6 +32,11 @@ const settings = {
       secondary: "#7f40b9",
     },
   },
+  sessions:{
+    currentSession:'pomodoro',
+    longBreakSessions:4,
+    sessionsDone: 0
+  }
 };
 
 export default settings

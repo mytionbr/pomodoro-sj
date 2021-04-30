@@ -12,38 +12,49 @@ import ChronometerSetting from "../components/ChronometerSetting";
 import ApplicationSetting from "../components/ApplicationSetting";
 import NotificationsSetting from "../components/NotificationsSetting";
 
-const SettingsScreen = (props) => {
+const SettingsScreen = ({ match, settings, setSettings }) => {
   const initialSetting = "cronometro";
 
   const [currentSetting, setCurrentSetting] = useState(initialSetting);
 
   useEffect(() => {
-    setCurrentSetting(props.match.params.setting);
-  });
+    setCurrentSetting(match.params.setting);
 
-  
+    console.log(settings);
+  });
 
   const getSetting = (current) => {
     switch (current) {
       case "cronometro":
-        return <ChronometerSetting />;
+        return (
+          <ChronometerSetting settings={settings} setSettings={setSettings} />
+        );
       case "aplicacao":
-        return <ApplicationSetting />;
+        return (
+          <ApplicationSetting settings={settings} setSettings={setSettings} />
+        );
       case "notificacao":
-        return <NotificationsSetting />;
+        return (
+          <NotificationsSetting settings={settings} setSettings={setSettings} />
+        );
       default:
-        return <ChronometerSetting />;
+        return (
+          <ChronometerSetting settings={settings} setSettings={setSettings} />
+        );
     }
   };
 
   return (
     <div className="container-config">
       <div className="menu-config">
-        <div className={
-          currentSetting === 'cronometro' 
-          ?'menu-section menu-section-selector' 
-          :'menu-section'  
-          } id="option_chronometer">
+        <div
+          className={
+            currentSetting === "cronometro"
+              ? "menu-section menu-section-selector"
+              : "menu-section"
+          }
+          id="option_chronometer"
+        >
           <Link to="/configuracoes/cronometro">
             {" "}
             <i>
@@ -52,11 +63,14 @@ const SettingsScreen = (props) => {
             Cronômetro
           </Link>
         </div>
-        <div className={
-          currentSetting === 'aplicacao' 
-          ?'menu-section menu-section-selector' 
-          :'menu-section'  
-          } id="option_aplication">
+        <div
+          className={
+            currentSetting === "aplicacao"
+              ? "menu-section menu-section-selector"
+              : "menu-section"
+          }
+          id="option_aplication"
+        >
           <Link to="/configuracoes/aplicacao">
             <i>
               <FontAwesomeIcon icon={faDesktop} />
@@ -64,11 +78,14 @@ const SettingsScreen = (props) => {
             Aplicação
           </Link>
         </div>
-        <div className={
-          currentSetting === 'notificacao' 
-          ?'menu-section menu-section-selector' 
-          :'menu-section'  
-          } id="option_motifications">
+        <div
+          className={
+            currentSetting === "notificacao"
+              ? "menu-section menu-section-selector"
+              : "menu-section"
+          }
+          id="option_motifications"
+        >
           <Link to="/configuracoes/notificacao">
             <i>
               <FontAwesomeIcon icon={faBell} />
