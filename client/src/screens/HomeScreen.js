@@ -1,6 +1,7 @@
 import Chronometer from '../components/Chronometer'
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
+    console.log()
     
     return (
        <Chronometer/>
