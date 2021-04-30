@@ -2,37 +2,21 @@
 import { useState } from "react";
 import ColorManager from '../util/ColorManager'
 
-const Chronometer = (props) => {
-  const modes = {
-    pomodoro: {
-      type:"pomodoro",
-      time:{
-        minute:'25',
-        second:'00'
-      },
-    },
-    shortBreak: {
-      type:"shortBreak",
-      time:{
-        minute:'05',
-        second:'00'
-      }
-    },
-    longBreak: {
-      type:"longBreak",
-      time:{
-        minute:'10',
-        second:'00'
-      }
-    },
-  };
+const Chronometer = ({ settings, setSettings }) => {
+  
+ 
+
+  const [pomodoro, setPomodoro] = useState(settings.pomodoro);
+  const [shortBreak, setShortBreak] = useState(settings.shortBreak);
+  const [longBreak, setLongBreak] = useState(settings.longBreak);
+  const [sessions, setSessions] = useState(settings.sessions);
 
   const colorManeger = new ColorManager
 
-  const [time, setTime] = useState(modes.pomodoro.time);
+  const [time, setTime] = useState(pomodoro.time);
   const [intervalId, setIntervalId] = useState(null);
   const [disableButton, setDisableButton] = useState(false);
-  const [currentMode, setCurrentMode] = useState(modes.pomodoro);
+  const [currentMode, setCurrentMode] = useState(pomodoro);
 
   const handleStartCount = () => {
     let { minute, second } = time;
@@ -84,9 +68,9 @@ const Chronometer = (props) => {
   return (
     <div className="pomodoro-container">
       <div className="pomodoro-options">
-        <button id="pomodoro-mode" onClick={()=>handleModeTimer(modes.pomodoro)}>Pomodoro</button>
-        <button id="pausa-curta-mode" onClick={()=>handleModeTimer(modes.shortBreak)}>Pausa curta</button>
-        <button id="pausa-longa-mode" onClick={()=>handleModeTimer(modes.longBreak)}>Pausa longa</button>
+        <button id="pomodoro-mode" onClick={()=>handleModeTimer(pomodoro)}>Pomodoro</button>
+        <button id="pausa-curta-mode" onClick={()=>handleModeTimer(shortBreak)}>Pausa curta</button>
+        <button id="pausa-longa-mode" onClick={()=>handleModeTimer(longBreak)}>Pausa longa</button>
       </div>
       <div className="pomodoro-time" id="pomodoro-time">
         {`${time.minute} : ${time.second}`}

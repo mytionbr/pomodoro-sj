@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const ChronometerSetting = ({ settings, setSettings }) => {
   const [pomodoro, setPomodoro] = useState(settings.pomodoro);

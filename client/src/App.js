@@ -55,9 +55,14 @@ function App() {
         </header>
         <main className="main-container">
           <Switch>
-            <Route exact path={["/", "/home"]}>
-              <HomeScreen settings={settings} setSettings={setSettings} />
-            </Route>
+            <Route exact path={["/", "/home"]} render={(props) => (
+                <HomeScreen
+                  settings={settings}
+                  setSettings={setSettings}
+                  {...props}
+                />
+              )}
+            />
             <Route exact path="/tarefas">
               <TasksScreen />
             </Route>
