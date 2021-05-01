@@ -1,33 +1,47 @@
 import { useState } from "react";
 
 const ChronometerSetting = ({ settings, dispatch }) => {
-  const [pomodoro, setPomodoro] = useState(settings.pomodoro);
-  const [shortBreak, setShortBreak] = useState(settings.shortBreak);
-  const [longBreak, setLongBreak] = useState(settings.longBreak);
-  const [sessions, setSessions] = useState(settings.sessions);
-  
-  
-  const handleChangePomodoroTime =  (e) => {
-    setPomodoro({...pomodoro, time:{minute: e.target.value, second: '00'}} )
-    dispatch({type:'updatePomodoro', payload:pomodoro}) 
+  let pomodoro = settings.pomodoro
+  let shortBreak = settings.shortBreak
+  let longBreak = settings.longBreak
+  let sessions = settings.sessions
+
+  const handleChangePomodoroTime = (e) => {
+    console.log(e.target.value)
+    pomodoro = {
+      ...pomodoro,
+      time: { minute: e.target.value, second: "00" },
+    }
+       
+    
+
+    dispatch({ type: "updatePomodoro", payload: pomodoro });
   };
 
   const handleChangeShortBreakTime = (e) => {
-    setShortBreak({ ...shortBreak, time: { minute: e.target.value,second:'00' } });
-    dispatch({type:'updateShortBreak', payload:shortBreak})  
+    shortBreak = {
+      ...shortBreak,
+      time: { minute: e.target.value, second: "00" },
+    };
+    dispatch({ type: "updateShortBreak", payload: shortBreak });
   };
 
   const handleChangeLongBreakTime = (e) => {
-    setLongBreak({ ...longBreak, time: { minute: e.target.value, second:'00' } });
-    dispatch({type:'updateLongBreak', payload:longBreak})  
+    longBreak = {
+      ...longBreak,
+      time: { minute: e.target.value, second: "00" },
+    };
+    dispatch({ type: "updateLongBreak", payload: longBreak });
   };
 
   const handleChangeSession = (e) => {
-    setSessions({ ...sessions, longBreakSessions: e.target.value,second:'00' });
-    dispatch({type:'updateSessions', payload:sessions})  
-    
+    sessions = {
+      ...sessions,
+      longBreakSessions: e.target.value,
+      second: "00",
+    };
+    dispatch({ type: "updateSessions", payload: sessions });
   };
-
 
   return (
     <div>
@@ -37,7 +51,7 @@ const ChronometerSetting = ({ settings, dispatch }) => {
             type="number"
             name="pomodoro-duration"
             id="pomodoro-duration"
-            value={settings.pomodoro.time.minute}
+            value={pomodoro.time.minute}
             onChange={(e) => handleChangePomodoroTime(e)}
           />
           <label htmlFor="pomodoro-duration">Pomodoro</label>
@@ -75,7 +89,6 @@ const ChronometerSetting = ({ settings, dispatch }) => {
           <label htmlFor="cycle-pomodoro">Ciclo</label>
         </div>
       </div>
-     
     </div>
   );
 };
