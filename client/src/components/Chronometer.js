@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions*/
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import ColorManager from '../util/ColorManager'
 
 const Chronometer = ({ settings, setSettings }) => {
@@ -65,6 +65,14 @@ const Chronometer = ({ settings, setSettings }) => {
     setTime(mode.time)
   }
 
+  useEffect(()=>{
+    if(time.minute === '' || time.minute === '0'){
+      setTime({
+        ...time,
+        minute:'00'
+      })
+    }
+  })
 
   return (
     <div className="pomodoro-container">
