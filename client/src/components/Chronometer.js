@@ -16,18 +16,20 @@ const Chronometer = ({ settings, setSettings }) => {
   const [currentMode, setCurrentMode] = useState(pomodoro);
 
   const handleStartCount = () => {
-    let { minute, second } = time;
+    let minute = Number(time.minute)
+    let second = Number(time.second)
+
     setDisableButton(true);
 
     if (!intervalId) {
       setIntervalId(
         setInterval(() => {
-          minute == 0
-            ? second == 0
-              ? handlePauseTime()
+          minute === 0
+            ? second === 0
+              ? (handlePauseTime(),console.log('oi'))
               : second--
-            : second == 0
-            ? (minute--, (second = "59"))
+            : second === 0
+            ? (minute--, (second = 59))
             : second--;
 
           // document.title =  `${minute} : ${second} | pomodoro-js`
@@ -52,12 +54,12 @@ const Chronometer = ({ settings, setSettings }) => {
     }
   };
 
-  // const handleModeTimer = (mode) => {
-  //   handlePauseTime();
-  //   setCurrentMode(mode);
-  //   colorManeger.changeBackground(mode.type);
-  //   setTime(mode.time);
-  // };
+  const handleModeTimer = (mode) => {
+    handlePauseTime();
+    setCurrentMode(mode);
+    colorManeger.changeBackground(mode.type);
+    setTime(mode.time);
+  };
 
   useEffect(() => {
     const {minute} = time
@@ -68,6 +70,7 @@ const Chronometer = ({ settings, setSettings }) => {
           ...time,
           minute: "00",
         });
+
       }
       
       if(Number(minute) < 10 && minute.length < 2) {
