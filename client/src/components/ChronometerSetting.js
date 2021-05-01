@@ -1,22 +1,67 @@
 import { useState } from "react";
 
 const ChronometerSetting = ({ settings, dispatch }) => {
-  
-
   const handleChangePomodoroTime = (e) => {
-    dispatch({ type: "updatePomodoro", payload: {time: { minute: e.target.value, second: "00" }} });
+    let value = e.target.value;
+    if (value === "" || value === "0") {
+      dispatch({
+        type: "updatePomodoro",
+        payload: { time: { minute: value, second: "59" } },
+      });
+    } else {
+      dispatch({
+        type: "updatePomodoro",
+        payload: { time: { minute: value, second: "00" } },
+      });
+    }
   };
 
   const handleChangeShortBreakTime = (e) => {
-      dispatch({ type: "updateShortBreak", payload: {time: { minute: e.target.value, second: "00" }} });
+    let value = e.target.value;
+    if (value === "" || value === "0") {
+      dispatch({
+        type: "updateShortBreak",
+        payload: { time: { minute: "00", second: "59" } },
+      });
+    } else {
+      dispatch({
+        type: "updateShortBreak",
+        payload: { time: { minute: value, second: "00" } },
+      });
+    }
   };
 
   const handleChangeLongBreakTime = (e) => {
-    dispatch({ type: "updateLongBreak", payload: {time: { minute: e.target.value, second: "00" }} });
+    let value = e.target.value;
+    if (value === "" || value === "0") {
+      dispatch({
+        type: "updateLongBreak",
+        payload: { time: { minute: value, second: "59" } },
+      });
+    } else {
+      dispatch({
+        type: "updateLongBreak",
+        payload: { time: { minute: value, second: "00" } },
+      });
+    }
   };
 
   const handleChangeSession = (e) => {
-    dispatch({ type: "updateSessions", payload: {longBreakSessions: e.target.value} });
+    let value = e.target.value;
+    if (value === "" || value === "0") {
+      dispatch({
+        type: "updateSessions",
+        payload: { longBreakSessions: value },
+      });
+      setTimeout(() => {
+        dispatch({ type: "updateSessions", payload: { longBreakSessions: 1 } });
+      }, 500);
+    } else {
+      dispatch({
+        type: "updateSessions",
+        payload: { longBreakSessions: value },
+      });
+    }
   };
 
   return (
