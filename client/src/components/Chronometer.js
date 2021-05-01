@@ -2,11 +2,11 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import ColorManager from "../util/ColorManager";
 
-const Chronometer = ({ settings, setSettings }) => {
+const Chronometer = ({ settings, dispatch }) => {
   const [pomodoro, setPomodoro] = useState(settings.pomodoro);
   const [shortBreak, setShortBreak] = useState(settings.shortBreak);
   const [longBreak, setLongBreak] = useState(settings.longBreak);
-  const [sessions, setSessions] = useState(settings.sessions);
+  
 
   const colorManeger = new ColorManager();
 
@@ -55,11 +55,12 @@ const Chronometer = ({ settings, setSettings }) => {
   const handleModeTimer = (mode) => {
     handlePauseTime();
     setCurrentMode(mode);
+    dispatch({type:"updateSessions",payload:{currentSession:mode.type}})
     colorManeger.changeBackground(mode.type);
     setTime(mode.time);
   };
 
-  useEffect(() => {
+  const timeValidation = () =>{
     const { minute } = time;
 
     if (time.minute === "" || time.minute === "0") {
@@ -75,6 +76,12 @@ const Chronometer = ({ settings, setSettings }) => {
         minute: "0" + minute,
       });
     }
+  }
+
+  useEffect(() => {
+   
+    timeValidation()
+
   });
 
   return (

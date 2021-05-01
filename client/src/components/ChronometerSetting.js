@@ -21,7 +21,7 @@ const ChronometerSetting = ({ settings, dispatch }) => {
     if (value === "" || value === "0") {
       dispatch({
         type: "updateShortBreak",
-        payload: { time: { minute: "00", second: "59" } },
+        payload: { time: { minute: value, second: "59" } },
       });
     } else {
       dispatch({
