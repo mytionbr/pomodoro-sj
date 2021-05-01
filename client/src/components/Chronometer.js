@@ -52,12 +52,12 @@ const Chronometer = ({ settings, setSettings }) => {
     }
   };
 
-  const handleModeTimer = (mode) => {
-    handlePauseTime();
-    setCurrentMode(mode);
-    colorManeger.changeBackground(mode.type);
-    setTime(mode.time);
-  };
+  // const handleModeTimer = (mode) => {
+  //   handlePauseTime();
+  //   setCurrentMode(mode);
+  //   colorManeger.changeBackground(mode.type);
+  //   setTime(mode.time);
+  // };
 
   useEffect(() => {
     const {minute} = time
