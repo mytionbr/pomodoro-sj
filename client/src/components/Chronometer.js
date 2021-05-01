@@ -60,12 +60,24 @@ const Chronometer = ({ settings, setSettings }) => {
   };
 
   useEffect(() => {
-    if (time.minute === "" || time.minute === "0") {
-      setTime({
-        ...time,
-        minute: "00",
-      });
-    }
+    const {minute} = time
+    
+    
+      if (time.minute === "" || time.minute === "0") {
+        setTime({
+          ...time,
+          minute: "00",
+        });
+      }
+      
+      if(Number(minute) < 10 && minute.length < 2) {
+        setTime({
+          ...time,
+          minute: '0' + minute,
+        });
+      }
+    
+    
   });
 
   return (
@@ -88,11 +100,7 @@ const Chronometer = ({ settings, setSettings }) => {
         </button>
       </div>
       <div className="pomodoro-time" id="pomodoro-time">
-        {`${
-          Number(time.minute) < 10 && Number(time.minute) > 0
-            ? "0" + time.minute
-            : time.minute
-        } : ${time.second}`}
+        {`${time.minute} : ${time.second}`}
       </div>
       <div className="pomodoro-tasks">Trabalho</div>
       <div className="pomodoro-buttons">
