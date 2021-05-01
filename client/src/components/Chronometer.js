@@ -1,18 +1,14 @@
 /* eslint-disable no-unused-expressions*/
-import { useState,useEffect } from "react";
-import ColorManager from '../util/ColorManager'
+import { useState, useEffect } from "react";
+import ColorManager from "../util/ColorManager";
 
 const Chronometer = ({ settings, setSettings }) => {
-  
- 
-
   const [pomodoro, setPomodoro] = useState(settings.pomodoro);
   const [shortBreak, setShortBreak] = useState(settings.shortBreak);
   const [longBreak, setLongBreak] = useState(settings.longBreak);
   const [sessions, setSessions] = useState(settings.sessions);
 
-
-  const colorManeger = new ColorManager
+  const colorManeger = new ColorManager();
 
   const [time, setTime] = useState(pomodoro.time);
   const [intervalId, setIntervalId] = useState(null);
@@ -34,8 +30,7 @@ const Chronometer = ({ settings, setSettings }) => {
             ? (minute--, (second = "59"))
             : second--;
 
-
-         // document.title =  `${minute} : ${second} | pomodoro-js`
+          // document.title =  `${minute} : ${second} | pomodoro-js`
 
           setTime({
             minute:
@@ -43,7 +38,6 @@ const Chronometer = ({ settings, setSettings }) => {
             second:
               second < 10 && typeof second === "number" ? "0" + second : second,
           });
-         
         }, 100)
       );
     }
@@ -58,31 +52,47 @@ const Chronometer = ({ settings, setSettings }) => {
     }
   };
 
-  const handleModeTimer = (mode)=>{
-    handlePauseTime()
-    setCurrentMode(mode)
-    colorManeger.changeBackground(mode.type)
-    setTime(mode.time)
-  }
+  const handleModeTimer = (mode) => {
+    handlePauseTime();
+    setCurrentMode(mode);
+    colorManeger.changeBackground(mode.type);
+    setTime(mode.time);
+  };
 
-  useEffect(()=>{
-    if(time.minute === '' || time.minute === '0'){
+  useEffect(() => {
+    if (time.minute === "" || time.minute === "0") {
       setTime({
         ...time,
-        minute:'00'
-      })
+        minute: "00",
+      });
     }
-  })
+  });
 
   return (
     <div className="pomodoro-container">
       <div className="pomodoro-options">
-        <button id="pomodoro-mode" onClick={()=>handleModeTimer(pomodoro)}>Pomodoro</button>
-        <button id="pausa-curta-mode" onClick={()=>handleModeTimer(shortBreak)}>Pausa curta</button>
-        <button id="pausa-longa-mode" onClick={()=>handleModeTimer(longBreak)}>Pausa longa</button>
+        <button id="pomodoro-mode" onClick={() => handleModeTimer(pomodoro)}>
+          Pomodoro
+        </button>
+        <button
+          id="pausa-curta-mode"
+          onClick={() => handleModeTimer(shortBreak)}
+        >
+          Pausa curta
+        </button>
+        <button
+          id="pausa-longa-mode"
+          onClick={() => handleModeTimer(longBreak)}
+        >
+          Pausa longa
+        </button>
       </div>
       <div className="pomodoro-time" id="pomodoro-time">
-        {`${time.minute} : ${time.second}`}
+        {`${
+          Number(time.minute) < 10 && Number(time.minute) > 0
+            ? "0" + time.minute
+            : time.minute
+        } : ${time.second}`}
       </div>
       <div className="pomodoro-tasks">Trabalho</div>
       <div className="pomodoro-buttons">
