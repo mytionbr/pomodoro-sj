@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions*/
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import ColorManager from "../util/ColorManager";
 
 const Chronometer = ({ settings, setSettings }) => {
@@ -11,45 +11,43 @@ const Chronometer = ({ settings, setSettings }) => {
   const colorManeger = new ColorManager();
 
   const [time, setTime] = useState(pomodoro.time);
-  const [intervalId, setIntervalId] = useState(null);
   const [disableButton, setDisableButton] = useState(false);
   const [currentMode, setCurrentMode] = useState(pomodoro);
 
+  let intervalId = null;
+
   const handleStartCount = () => {
-    let minute = Number(time.minute)
-    let second = Number(time.second)
+    let minute = Number(time.minute);
+    let second = Number(time.second);
 
     setDisableButton(true);
-
     if (!intervalId) {
-      setIntervalId(
-        setInterval(() => {
-          minute === 0
-            ? second === 0
-              ? (handlePauseTime(),console.log('oi'))
-              : second--
-            : second === 0
-            ? (minute--, (second = 59))
-            : second--;
+      intervalId = setInterval(() => {
+        console.log(intervalId);
+        minute === 0
+          ? second === 0
+            ? (handlePauseTime())
+            : second--
+          : second === 0
+          ? (minute--, (second = 59))
+          : second--;
 
-          // document.title =  `${minute} : ${second} | pomodoro-js`
+        // document.title =  `${minute} : ${second} | pomodoro-js`
 
-          setTime({
-            minute:
-              minute < 10 && typeof minute === "number" ? "0" + minute : minute,
-            second:
-              second < 10 && typeof second === "number" ? "0" + second : second,
-          });
-        }, 100)
-      );
+        setTime({
+          minute:
+            minute < 10 && typeof minute === "number" ? "0" + minute : minute,
+          second:
+            second < 10 && typeof second === "number" ? "0" + second : second,
+        });
+      }, 100);
     }
   };
 
   const handlePauseTime = () => {
-    console.log(intervalId);
     if (intervalId) {
       clearInterval(intervalId);
-      setIntervalId(null);
+      intervalId = null;
       setDisableButton(false);
     }
   };
@@ -62,25 +60,21 @@ const Chronometer = ({ settings, setSettings }) => {
   };
 
   useEffect(() => {
-    const {minute} = time
-    
-    
-      if (time.minute === "" || time.minute === "0") {
-        setTime({
-          ...time,
-          minute: "00",
-        });
+    const { minute } = time;
 
-      }
-      
-      if(Number(minute) < 10 && minute.length < 2) {
-        setTime({
-          ...time,
-          minute: '0' + minute,
-        });
-      }
-    
-    
+    if (time.minute === "" || time.minute === "0") {
+      setTime({
+        ...time,
+        minute: "00",
+      });
+    }
+
+    if (Number(minute) < 10 && minute.length < 2) {
+      setTime({
+        ...time,
+        minute: "0" + minute,
+      });
+    }
   });
 
   return (
