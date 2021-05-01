@@ -1,40 +1,33 @@
 import { useState } from "react";
 
-const ChronometerSetting = ({ settings, setSettings }) => {
+const ChronometerSetting = ({ settings, dispatch }) => {
   const [pomodoro, setPomodoro] = useState(settings.pomodoro);
   const [shortBreak, setShortBreak] = useState(settings.shortBreak);
   const [longBreak, setLongBreak] = useState(settings.longBreak);
   const [sessions, setSessions] = useState(settings.sessions);
-
-  const handleChangePomodoroTime = async (e) => {
-    await setPomodoro({ ...pomodoro, time: {minute: e.target.value, second: '00'} });
-    await console.log(pomodoro.time.minute)
-    if(e.target.value !== '0'){ saveSetting(pomodoro)}
+  
+  
+  const handleChangePomodoroTime =  (e) => {
+    setPomodoro({...pomodoro, time:{minute: e.target.value, second: '00'}} )
+    dispatch({type:'updatePomodoro', payload:pomodoro}) 
   };
 
-  console.log(sessions)
-
   const handleChangeShortBreakTime = (e) => {
-    let value = e.target.value
     setShortBreak({ ...shortBreak, time: { minute: e.target.value,second:'00' } });
-    if(value !== '0') saveSetting(shortBreak)
+    dispatch({type:'updateShortBreak', payload:shortBreak})  
   };
 
   const handleChangeLongBreakTime = (e) => {
-    let value = e.target.value
     setLongBreak({ ...longBreak, time: { minute: e.target.value, second:'00' } });
-    if(value !== '0') saveSetting(longBreak)
+    dispatch({type:'updateLongBreak', payload:longBreak})  
   };
 
   const handleChangeSession = (e) => {
-    let value = e.target.value
     setSessions({ ...sessions, longBreakSessions: e.target.value,second:'00' });
-    if(value !== '0') saveSetting(sessions)
+    dispatch({type:'updateSessions', payload:sessions})  
+    
   };
 
-  const saveSetting = (element)=>{
-    setSettings({...settings,[element.type]:element})
-  }
 
   return (
     <div>
@@ -44,7 +37,7 @@ const ChronometerSetting = ({ settings, setSettings }) => {
             type="number"
             name="pomodoro-duration"
             id="pomodoro-duration"
-            value={pomodoro.time.minute}
+            value={settings.pomodoro.time.minute}
             onChange={(e) => handleChangePomodoroTime(e)}
           />
           <label htmlFor="pomodoro-duration">Pomodoro</label>
@@ -82,6 +75,7 @@ const ChronometerSetting = ({ settings, setSettings }) => {
           <label htmlFor="cycle-pomodoro">Ciclo</label>
         </div>
       </div>
+     
     </div>
   );
 };

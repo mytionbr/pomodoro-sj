@@ -1,10 +1,10 @@
 import Chronometer from '../components/Chronometer'
 
-const HomeScreen = ({settings,setSettings}) => {
+const HomeScreen = ({settings,dispatch}) => {
     console.log()
     
     return (
-       <Chronometer settings={settings} setSettings={setSettings}/>
+       <Chronometer settings={settings} dispatch={dispatch}/>
     )
 }
 

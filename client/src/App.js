@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCogs, faTasks, faUser } from "@fortawesome/free-solid-svg-icons";
 
-import { useState } from "react";
+import { useReducer } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import HomeScreen from "./screens/HomeScreen";
@@ -13,7 +13,24 @@ import Error404 from "./screens/Error404";
 import inititalSettings from "./settings";
 
 function App() {
-  const [settings, setSettings] = useState(inititalSettings);
+  
+  const reducer = (state,action)=>{
+    switch(action.type){
+      case 'updatePomodoro':
+        return {...state,pomodoro:action.payload}
+      case 'updateShortBreak':
+        return {...state,shortBreak:action.payload}
+      case 'updateLongBreak':
+        return {...state,longBreak:action.payload}
+      case 'updateSessions':
+        return {...state,sessions:action.payload}
+      default:
+        throw new Error()
+    }
+  }
+  
+  
+  const [settings, dispatch] = useReducer(reducer,inititalSettings);
 
   return (
     <Router>
@@ -58,7 +75,7 @@ function App() {
             <Route exact path={["/", "/home"]} render={(props) => (
                 <HomeScreen
                   settings={settings}
-                  setSettings={setSettings}
+                  dispatch={dispatch}
                   {...props}
                 />
               )}
@@ -74,7 +91,7 @@ function App() {
               render={(props) => (
                 <SettingsScreen
                   settings={settings}
-                  setSettings={setSettings}
+                  dispatch={dispatch}
                   {...props}
                 />
               )}

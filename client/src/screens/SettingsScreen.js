@@ -12,7 +12,7 @@ import ChronometerSetting from "../components/ChronometerSetting";
 import ApplicationSetting from "../components/ApplicationSetting";
 import NotificationsSetting from "../components/NotificationsSetting";
 
-const SettingsScreen = ({ match, settings, setSettings }) => {
+const SettingsScreen = ({ match, settings, dispatch }) => {
   const initialSetting = "cronometro";
 
   const [currentSetting, setCurrentSetting] = useState(initialSetting);
@@ -25,19 +25,19 @@ const SettingsScreen = ({ match, settings, setSettings }) => {
     switch (current) {
       case "cronometro":
         return (
-          <ChronometerSetting settings={settings} setSettings={setSettings} />
+          <ChronometerSetting settings={settings} dispatch={dispatch} />
         );
       case "aplicacao":
         return (
-          <ApplicationSetting settings={settings} setSettings={setSettings} />
+          <ApplicationSetting settings={settings} dispatch={dispatch} />
         );
       case "notificacao":
         return (
-          <NotificationsSetting settings={settings} setSettings={setSettings} />
+          <NotificationsSetting settings={settings} dispatch={dispatch} />
         );
       default:
         return (
-          <ChronometerSetting settings={settings} setSettings={setSettings} />
+          <ChronometerSetting settings={settings} dispatch={dispatch} />
         );
     }
   };

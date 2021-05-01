@@ -11,7 +11,6 @@ const Chronometer = ({ settings, setSettings }) => {
   const [longBreak, setLongBreak] = useState(settings.longBreak);
   const [sessions, setSessions] = useState(settings.sessions);
 
-  console.log(settings)
 
   const colorManeger = new ColorManager
 
