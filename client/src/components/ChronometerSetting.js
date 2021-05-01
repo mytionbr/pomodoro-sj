@@ -1,46 +1,22 @@
 import { useState } from "react";
 
 const ChronometerSetting = ({ settings, dispatch }) => {
-  let pomodoro = settings.pomodoro
-  let shortBreak = settings.shortBreak
-  let longBreak = settings.longBreak
-  let sessions = settings.sessions
+  
 
   const handleChangePomodoroTime = (e) => {
-    console.log(e.target.value)
-    pomodoro = {
-      ...pomodoro,
-      time: { minute: e.target.value, second: "00" },
-    }
-       
-    
-
-    dispatch({ type: "updatePomodoro", payload: pomodoro });
+    dispatch({ type: "updatePomodoro", payload: {time: { minute: e.target.value, second: "00" }} });
   };
 
   const handleChangeShortBreakTime = (e) => {
-    shortBreak = {
-      ...shortBreak,
-      time: { minute: e.target.value, second: "00" },
-    };
-    dispatch({ type: "updateShortBreak", payload: shortBreak });
+      dispatch({ type: "updateShortBreak", payload: {time: { minute: e.target.value, second: "00" }} });
   };
 
   const handleChangeLongBreakTime = (e) => {
-    longBreak = {
-      ...longBreak,
-      time: { minute: e.target.value, second: "00" },
-    };
-    dispatch({ type: "updateLongBreak", payload: longBreak });
+    dispatch({ type: "updateLongBreak", payload: {time: { minute: e.target.value, second: "00" }} });
   };
 
   const handleChangeSession = (e) => {
-    sessions = {
-      ...sessions,
-      longBreakSessions: e.target.value,
-      second: "00",
-    };
-    dispatch({ type: "updateSessions", payload: sessions });
+    dispatch({ type: "updateSessions", payload: {longBreakSessions: e.target.value} });
   };
 
   return (
@@ -51,7 +27,7 @@ const ChronometerSetting = ({ settings, dispatch }) => {
             type="number"
             name="pomodoro-duration"
             id="pomodoro-duration"
-            value={pomodoro.time.minute}
+            value={settings.pomodoro.time.minute}
             onChange={(e) => handleChangePomodoroTime(e)}
           />
           <label htmlFor="pomodoro-duration">Pomodoro</label>
@@ -61,7 +37,7 @@ const ChronometerSetting = ({ settings, dispatch }) => {
             type="number"
             name="short-break-duration"
             id="short-break-duration"
-            value={shortBreak.time.minute}
+            value={settings.shortBreak.time.minute}
             onChange={(e) => handleChangeShortBreakTime(e)}
           />
           <label htmlFor="short-break-duration">Pausa curta</label>
@@ -73,7 +49,7 @@ const ChronometerSetting = ({ settings, dispatch }) => {
             type="number"
             name="long-break-duration"
             id="long-break-duration"
-            value={longBreak.time.minute}
+            value={settings.longBreak.time.minute}
             onChange={(e) => handleChangeLongBreakTime(e)}
           />
           <label htmlFor="long-break-duration">Pausa longa</label>
@@ -83,7 +59,7 @@ const ChronometerSetting = ({ settings, dispatch }) => {
             type="number"
             name="cycle-pomodoro"
             id="cycle-pomodoro"
-            value={sessions.longBreakSessions}
+            value={settings.sessions.longBreakSessions}
             onChange={(e) => handleChangeSession(e)}
           />
           <label htmlFor="cycle-pomodoro">Ciclo</label>
