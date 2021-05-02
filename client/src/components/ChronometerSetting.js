@@ -54,7 +54,9 @@ const ChronometerSetting = ({ settings, dispatch }) => {
         payload: { longBreakSessions: value },
       });
       setTimeout(() => {
-        dispatch({ type: "updateSessions", payload: { longBreakSessions: 1 } });
+        dispatch({ 
+          type: "updateSessions", 
+          payload: { longBreakSessions: 1 } });
       }, 500);
     } else {
       dispatch({
