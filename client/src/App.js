@@ -23,6 +23,7 @@ function App() {
       case 'updateLongBreak':
         return {...state,longBreak:action.payload}
       case 'updateSessions':
+        console.log({...state,sessions:action.payload})
         return {...state,sessions:action.payload}
       default:
         throw new Error()

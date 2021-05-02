@@ -56,12 +56,14 @@ const Chronometer = ({ settings, dispatch }) => {
   };
 
   const handleModeTimer = (mode) => {
+    console.log(settings.sessions.currentSession)
     handlePauseTime();
     setCurrentMode(mode);
     dispatch({
       type: "updateSessions",
-      payload: { currentSession: mode.type },
+      payload: {...settings.sessions, currentSession: mode.type },
     });
+    
     colorManager.changeBackground(mode.type);
     setTime(mode.time);
   };

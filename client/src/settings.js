@@ -35,7 +35,7 @@ const settings = {
   sessions:{
     type:'sessions',
     currentSession:'pomodoro',
-    longBreakSessions:4,
+    longBreakSessions:'4',
     sessionsDone: 0
   }
 };
