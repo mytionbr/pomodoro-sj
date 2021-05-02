@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import ColorManager from "../util/ColorManager";
 
 const Chronometer = ({ settings, dispatch }) => {
+  
   const [pomodoro, setPomodoro] = useState(settings.pomodoro);
   const [shortBreak, setShortBreak] = useState(settings.shortBreak);
   const [longBreak, setLongBreak] = useState(settings.longBreak);
@@ -47,7 +48,6 @@ const Chronometer = ({ settings, dispatch }) => {
   };
 
   const handlePauseTime = function () {
-    console.log(intervalId);
     if (intervalId) {
       clearInterval(intervalId.current);
       intervalId.current = null;
@@ -56,7 +56,7 @@ const Chronometer = ({ settings, dispatch }) => {
   };
 
   const handleModeTimer = (mode) => {
-    console.log(settings.sessions.currentSession)
+    
     handlePauseTime();
     setCurrentMode(mode);
     dispatch({
@@ -105,7 +105,7 @@ const Chronometer = ({ settings, dispatch }) => {
 
   useEffect(() => {
     timeValidation();
-  });
+  },[time]);
 
   useEffect(()=>{
     handleChangeMode()
