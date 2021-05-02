@@ -9,18 +9,18 @@ const Chronometer = ({ settings, dispatch }) => {
 
   const colorManeger = new ColorManager();
 
-  const [time, setTime] = useState(pomodoro.time);
-  const [disableButton, setDisableButton] = useState(false);
   const [currentMode, setCurrentMode] = useState(pomodoro);
+  const [time, setTime] = useState(currentMode.time);
+  const [disableButton, setDisableButton] = useState(false);
 
-  const intervalId = useRef(null)
+  const intervalId = useRef(null);
 
-  const handleStartCount = ()=>{
+  const handleStartCount = () => {
     let minute = Number(time.minute);
     let second = Number(time.second);
 
     setDisableButton(true);
-    
+
     console.log(intervalId);
 
     if (!intervalId.current) {
@@ -42,15 +42,15 @@ const Chronometer = ({ settings, dispatch }) => {
           second:
             second < 10 && typeof second === "number" ? "0" + second : second,
         });
-      }, 100);} 
+      }, 100);
+    }
+  };
 
-  }
-
-  const handlePauseTime = function() {
+  const handlePauseTime = function () {
     console.log(intervalId);
     if (intervalId) {
       clearInterval(intervalId.current);
-      intervalId.current = null
+      intervalId.current = null;
       setDisableButton(false);
     }
   };
@@ -58,12 +58,15 @@ const Chronometer = ({ settings, dispatch }) => {
   const handleModeTimer = (mode) => {
     handlePauseTime();
     setCurrentMode(mode);
-    dispatch({type:"updateSessions",payload:{currentSession:mode.type}})
+    dispatch({
+      type: "updateSessions",
+      payload: { currentSession: mode.type },
+    });
     colorManeger.changeBackground(mode.type);
     setTime(mode.time);
   };
 
-  const timeValidation = () =>{
+  const timeValidation = () => {
     const { minute } = time;
 
     if (time.minute === "" || time.minute === "0") {
@@ -79,13 +82,32 @@ const Chronometer = ({ settings, dispatch }) => {
         minute: "0" + minute,
       });
     }
-  }
+  };
+
+  const handleChangeMode = ()=>{
+    console.log(settings.sessions.currentSession)
+    switch(settings.sessions.currentSession){
+      case 'pomomodoro':
+        setTime(pomodoro.time)
+        break
+      case 'shortBreak':
+        setTime(shortBreak.time)
+        break
+      case 'longBreak':
+        setTime(longBreak.time)
+        break
+      default:
+        break
+    }
+  } 
 
   useEffect(() => {
-   
-    timeValidation()
+    timeValidation();
+  });
 
-  },[]);
+  useEffect(()=>{
+    handleChangeMode()
+  },[])
 
   return (
     <div className="pomodoro-container">
