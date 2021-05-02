@@ -8,7 +8,6 @@ const ApplicationSetting = () => {
   const [state,setState] = useState(false)
 
   const activateColorPainel = ()=>{
-    
     setState(!state)
   }
   
@@ -34,7 +33,7 @@ const ApplicationSetting = () => {
     </div>
     {
       state 
-        ? <PainelColor render={setState} />
+        ? <PainelColor close={activateColorPainel} />
         : ''
     }
     

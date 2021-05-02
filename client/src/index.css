@@ -560,7 +560,7 @@ input:checked + .slider:before {
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #16a522;
-  background-color: rgba(0, 0, 0, 0.397);
+  background-color: rgba(0, 0, 0, 0.575);
 }
 
 .container-painel-color {
@@ -571,5 +571,16 @@ input:checked + .slider:before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #16a522;
+  background-color: transparent;
+}
+
+.close-panel-button{
+  position: absolute;
+  display: flex;
+  font-size: 8rem;
+  color: #ffffff;
+  top: 5%;
+  left: 5%;
+  transform: translate(-5%, -5%);
+  cursor: pointer;
 }
