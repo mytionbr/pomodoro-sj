@@ -7,7 +7,7 @@ const Chronometer = ({ settings, dispatch }) => {
   const [shortBreak, setShortBreak] = useState(settings.shortBreak);
   const [longBreak, setLongBreak] = useState(settings.longBreak);
 
-  const colorManeger = new ColorManager();
+  const colorManager = new ColorManager();
 
   const [currentMode, setCurrentMode] = useState(pomodoro);
   const [time, setTime] = useState(currentMode.time);
@@ -62,7 +62,7 @@ const Chronometer = ({ settings, dispatch }) => {
       type: "updateSessions",
       payload: { currentSession: mode.type },
     });
-    colorManeger.changeBackground(mode.type);
+    colorManager.changeBackground(mode.type);
     setTime(mode.time);
   };
 
