@@ -6,7 +6,6 @@ const Chronometer = ({ settings, dispatch }) => {
   const [pomodoro, setPomodoro] = useState(settings.pomodoro);
   const [shortBreak, setShortBreak] = useState(settings.shortBreak);
   const [longBreak, setLongBreak] = useState(settings.longBreak);
-  
 
   const colorManeger = new ColorManager();
 
@@ -14,19 +13,22 @@ const Chronometer = ({ settings, dispatch }) => {
   const [disableButton, setDisableButton] = useState(false);
   const [currentMode, setCurrentMode] = useState(pomodoro);
 
-  let intervalId = null;
+  const intervalId = useRef(null)
 
-  const handleStartCount = () => {
+  const handleStartCount = ()=>{
     let minute = Number(time.minute);
     let second = Number(time.second);
 
     setDisableButton(true);
-    if (!intervalId) {
-      intervalId = setInterval(() => {
+    
+    console.log(intervalId);
+
+    if (!intervalId.current) {
+      intervalId.current = setInterval(() => {
         console.log(intervalId);
         minute === 0
           ? second === 0
-            ? (handlePauseTime())
+            ? handlePauseTime()
             : second--
           : second === 0
           ? (minute--, (second = 59))
@@ -40,14 +42,15 @@ const Chronometer = ({ settings, dispatch }) => {
           second:
             second < 10 && typeof second === "number" ? "0" + second : second,
         });
-      }, 100);
-    }
-  };
+      }, 100);} 
 
-  const handlePauseTime = () => {
+  }
+
+  const handlePauseTime = function() {
+    console.log(intervalId);
     if (intervalId) {
-      clearInterval(intervalId);
-      intervalId = null;
+      clearInterval(intervalId.current);
+      intervalId.current = null
       setDisableButton(false);
     }
   };
@@ -82,7 +85,7 @@ const Chronometer = ({ settings, dispatch }) => {
    
     timeValidation()
 
-  });
+  },[]);
 
   return (
     <div className="pomodoro-container">
