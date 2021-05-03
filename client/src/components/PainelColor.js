@@ -2,13 +2,16 @@ import { useState } from "react";
 
 import ThemeOption from "./ThemeOption";
 
-function PainelColor({ settings, dispatch, colorManager, close, mode }) {
+function PainelColor({ settings,loading, dispatch, colorManager, close, mode }) {
   
   const [colors,setColors] = useState(settings.colorOptions);
 
+  const activeLoading = ()=>{
+    return loading 
+  }
 
   return (
-    <div className={"container-background"}>
+    <div className={"container-background" }>
       <div className="close-panel-button" onClick={close}>
         X
       </div>

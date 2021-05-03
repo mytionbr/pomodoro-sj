@@ -549,6 +549,7 @@ input:checked + .slider:before {
   transform: translate(-50%, -50%);
   background-color: #16a522;
   background-color: rgba(0, 0, 0, 0.575);
+  
 }
 
 .container-painel-color {
@@ -564,6 +565,8 @@ input:checked + .slider:before {
   align-items: center;
   justify-content: space-between;
 }
+
+
 
 .close-panel-button{
   position: absolute;
@@ -589,5 +592,9 @@ input:checked + .slider:before {
 }
 
 .color_option:hover{
+  opacity: 1;
+}
+
+.opacity{
   opacity: 1;
 }

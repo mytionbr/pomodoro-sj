@@ -3,7 +3,7 @@ import React from 'react'
 const UserScreen = () => {
     return (
         <div>
-            Usuário
+            <h1>Usuário</h1>
         </div>
     )
 }

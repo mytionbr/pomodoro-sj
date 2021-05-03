@@ -3,7 +3,7 @@ import React from 'react'
 const TasksScreen = () => {
     return (
         <div>
-            Tarefas
+            <h1>Tarefas</h1>
         </div>
     )
 }
