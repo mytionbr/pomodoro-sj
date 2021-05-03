@@ -15,8 +15,7 @@ import inititalSettings from "./settings";
 
 function App() {
 
-  const colorManager = new ColorManager();
-  
+ 
   const reducer = (state,action)=>{
     switch(action.type){
       case 'updatePomodoro':
@@ -34,6 +33,9 @@ function App() {
   
   
   const [settings, dispatch] = useReducer(reducer,inititalSettings);
+
+  const colorManager = new ColorManager(settings,dispatch);
+
 
   return (
     <Router>

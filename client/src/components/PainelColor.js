@@ -5,7 +5,7 @@ import ThemeOption from "./ThemeOption";
 function PainelColor({ settings, dispatch, colorManager, close, mode }) {
   const [colors,setColors] = useState(settings.colorOptions);
 
-  console.log(colors[1])
+  
 
   return (
     <div className={"container-background"}>

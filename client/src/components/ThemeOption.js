@@ -1,8 +1,6 @@
 import React from 'react'
 
 function ThemeOption({color,mode,colorManager}) {
-    
-    console.log(color)
 
     const handleChoiceColor = ()=>{
         colorManager.chooseAnotherTheme(mode.type,color)

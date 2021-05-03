@@ -1,38 +1,25 @@
-export default class ColorManager{
-    constructor(){
-        this.bgPomodoro = '#d04643'
-        this.bgShortBreak = '#87D043'
-        this.bgLongBreak = '#8C43D0'
+export default class  ColorManager{
+    constructor(settings,dispatch){
+        
     	this.style = document.documentElement.style
-		this.bgs = {
-            pomodoro:{
-                bg:'var(--bg-red)',
-                effect:'var(--bg-red-dark)',
-            }, 
-            shortBreak:{
-                bg:'var(--bg-green)',
-                effect:'var(--bg-green-dark)'
-            },
-            longBreak:{
-                bg:'var(--bg-purple)',
-                effect:'var(--bg-purple-dark)'
-            },
-        }
+		this.settings = settings
+        this.dispatch = dispatch
+        console.log()
     }
 
    changeBackground = (mode)=>{
         switch (mode) {
             case 'pomodoro':
-                this.style.setProperty('--main-color',this.bgs.pomodoro.bg)
-                this.style.setProperty('--main-color-effect',this.bgs.pomodoro.effect)
+                this.style.setProperty('--main-color',this.settings.pomodoro.background.primary)
+                this.style.setProperty('--main-color-effect',this.settings.pomodoro.background.secondary)
                 break;
             case 'shortBreak':
-                this.style.setProperty('--main-color',this.bgs.shortBreak.bg)
-                this.style.setProperty('--main-color-effect',this.bgs.shortBreak.effect)
+                this.style.setProperty('--main-color',this.settings.shortBreak.background.primary)
+                this.style.setProperty('--main-color-effect',this.settings.shortBreak.background.secondary)
                 break;
             case 'longBreak':
-                this.style.setProperty('--main-color',this.bgs.longBreak.bg)
-                this.style.setProperty('--main-color-effect',this.bgs.longBreak.effect)
+                this.style.setProperty('--main-color',this.settings.longBreak.background.primary)
+                this.style.setProperty('--main-color-effect',this.settings.longBreak.background.secondary)
                 break;
             default:
                 break;
@@ -42,13 +29,35 @@ export default class ColorManager{
     chooseAnotherTheme = (mode,color)=>{
         switch (mode) {
             case 'pomodoro':
-                this.bgs.pomodoro.bg = color
+                this.dispatch({
+                    type:'updatePomodoro',
+                    payload:{
+                        ...this.settings.pomodoro,
+                        background:{
+                                primary:color,
+                                secondary:`lighten(${color},50%)`                           }}
+                    }) 
+                    console.log(this.settings)
                 break;
             case 'shortBreak':
-                this.bgs.shortBreak.bg = color
+                this.dispatch({
+                    type:'updateShortBreak',
+                    payload:{
+                        ...this.settings.shortBreak,
+                        background:{
+                                primary:color,
+                                secondary:`lighten(${color},50%)`                           }}
+                    }) 
                 break;
             case 'longBreak':
-                this.bgs.longBreak.bg = color
+                this.dispatch({
+                    type:'updateLongBreak',
+                    payload:{
+                        ...this.settings.longBreak,
+                        background:{
+                                primary:color,
+                                secondary:`lighten(${color},50%)`                           }}
+                    }) 
                 break;
             default:
                 break;
