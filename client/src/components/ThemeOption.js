@@ -4,6 +4,7 @@ function ThemeOption({color,mode,colorManager}) {
 
     const handleChoiceColor = ()=>{
         colorManager.chooseAnotherTheme(mode.type,color)
+        
     }
     
     return (

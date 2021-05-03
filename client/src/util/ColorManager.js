@@ -37,7 +37,7 @@ export default class  ColorManager{
                                 primary:color,
                                 secondary:this.LightenDarkenColor(color,-15)                         }}
                     }) 
-                    console.log(this.settings)
+                
                 break;
             case 'shortBreak':
                 this.dispatch({
@@ -62,6 +62,15 @@ export default class  ColorManager{
                 break;
             default:
                 break;
+        }
+        this.updateSelectedTheme(mode,color)
+
+    }
+
+    updateSelectedTheme(mode,color){
+        if(mode === this.settings.sessions.currentSession){
+            this.style.setProperty('--main-color',color)
+            this.style.setProperty('--main-color-effect',this.LightenDarkenColor(color,-15))
         }
     }
 
