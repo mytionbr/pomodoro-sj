@@ -10,9 +10,12 @@ import TasksScreen from "./screens/TasksScreen";
 import UserScreen from "./screens/UserScreen";
 import Error404 from "./screens/Error404";
 
+import ColorManager from "./util/ColorManager";
 import inititalSettings from "./settings";
 
 function App() {
+
+  const colorManager = new ColorManager();
   
   const reducer = (state,action)=>{
     switch(action.type){
@@ -76,6 +79,7 @@ function App() {
                 <HomeScreen
                   settings={settings}
                   dispatch={dispatch}
+                  colorManager={colorManager}
                   {...props}
                 />
               )}
@@ -92,6 +96,7 @@ function App() {
                 <SettingsScreen
                   settings={settings}
                   dispatch={dispatch}
+                  colorManager={colorManager}
                   {...props}
                 />
               )}

@@ -1,15 +1,28 @@
-import React from "react";
+import { useState } from "react";
 
-function PainelColor(props) {
+import ThemeOption from "./ThemeOption";
+
+function PainelColor({ settings, dispatch, colorManager, close, mode }) {
+  const [colors,setColors] = useState(settings.colorOptions);
+
+  console.log(colors[1])
+
   return (
     <div className={"container-background"}>
-      <div className="close-panel-button" onClick={props.close}>
-         X
+      <div className="close-panel-button" onClick={close}>
+        X
       </div>
       <div className={"container-painel-color"}>
-        <div className="theme_option" id="theme_pomodoro">
-          <div className="theme_color"></div>
-        </div>
+        {colors.map((element) => {
+          return (
+            <ThemeOption
+              key={element}
+              color={element}
+              colorManager={colorManager}
+              mode={mode}
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -38,4 +38,20 @@ export default class ColorManager{
                 break;
         }
     }
+
+    chooseAnotherTheme = (mode,color)=>{
+        switch (mode) {
+            case 'pomodoro':
+                this.bgs.pomodoro.bg = color
+                break;
+            case 'shortBreak':
+                this.bgs.shortBreak.bg = color
+                break;
+            case 'longBreak':
+                this.bgs.longBreak.bg = color
+                break;
+            default:
+                break;
+        }
+    }
 }

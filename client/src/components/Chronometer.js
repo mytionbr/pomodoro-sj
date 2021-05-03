@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-expressions*/
 import { useState, useEffect, useRef, useCallback } from "react";
-import ColorManager from "../util/ColorManager";
 
-const Chronometer = ({ settings, dispatch }) => {
+
+const Chronometer = ({ settings, dispatch,colorManager }) => {
   
   const [pomodoro, setPomodoro] = useState(settings.pomodoro);
   const [shortBreak, setShortBreak] = useState(settings.shortBreak);
   const [longBreak, setLongBreak] = useState(settings.longBreak);
 
-  const colorManager = new ColorManager();
+ 
 
   const [currentMode, setCurrentMode] = useState(pomodoro);
   const [time, setTime] = useState(currentMode.time);
