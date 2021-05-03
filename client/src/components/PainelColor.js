@@ -3,9 +3,9 @@ import { useState } from "react";
 import ThemeOption from "./ThemeOption";
 
 function PainelColor({ settings, dispatch, colorManager, close, mode }) {
+  
   const [colors,setColors] = useState(settings.colorOptions);
 
-  
 
   return (
     <div className={"container-background"}>
@@ -20,6 +20,7 @@ function PainelColor({ settings, dispatch, colorManager, close, mode }) {
               color={element}
               colorManager={colorManager}
               mode={mode}
+              close={close}
             />
           );
         })}
