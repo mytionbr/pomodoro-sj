@@ -315,17 +315,7 @@ input[type="number"] {
   border-radius: 1rem;
 }
 
-#theme_pomodoro .theme_color {
-  background-color: var(--pomodoro-theme-color);
-}
 
-#theme_short_break .theme_color {
-  background-color: var(--short-break-theme-color);
-}
-
-#theme_long_break .theme_color {
-  background-color: var(--long-break-theme-color);
-}
 
 .theme_option {
   cursor: pointer;

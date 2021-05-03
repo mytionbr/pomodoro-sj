@@ -7,6 +7,10 @@ const ApplicationSetting = ({ settings, dispatch, colorManager }) => {
   const [state, setState] = useState(false);
   const [mode, setMode] = useState(false);
 
+  const pomodoroBackgroundTheme = {backgroundColor:settings.pomodoro.background.primary}
+  const shortBreakBackgroundTheme = {backgroundColor:settings.shortBreak.background.primary}
+  const longBreakBackgroundTheme = {backgroundColor:settings.longBreak.background.primary}
+
   const activateColorPainel = (mode) => {
     setState(!state);
     setMode(mode);
@@ -22,7 +26,7 @@ const ApplicationSetting = ({ settings, dispatch, colorManager }) => {
             id="theme_pomodoro"
             onClick={() => activateColorPainel(settings.pomodoro)}
           >
-            <div className="theme_color"></div>
+            <div className="theme_color" style={pomodoroBackgroundTheme}></div>
             <div className="title_option">Pomodoro</div>
           </div>
           <div
@@ -30,7 +34,7 @@ const ApplicationSetting = ({ settings, dispatch, colorManager }) => {
             id="theme_short_break"
             onClick={() => activateColorPainel(settings.shortBreak)}
           >
-            <div className="theme_color"></div>
+            <div className="theme_color" style={shortBreakBackgroundTheme}></div>
             <div className="title_option">Pausa curta</div>
           </div>
           <div
@@ -38,7 +42,7 @@ const ApplicationSetting = ({ settings, dispatch, colorManager }) => {
             id="theme_long_break"
             onClick={() => activateColorPainel(settings.longBreak)}
           >
-            <div className="theme_color"></div>
+            <div className="theme_color" style={longBreakBackgroundTheme}></div>
             <div className="title_option">Pausa longa</div>
           </div>
         </div>
