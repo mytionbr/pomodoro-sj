@@ -9,7 +9,7 @@ function TaskPane() {
             taskId:'1',
             categoryField: "Faculdade",
             descriptionField:"Trabalho de contabilidade",
-            sessionField:"4",
+            sessionField:"10",
             doneField:false
         },
         {
@@ -19,6 +19,14 @@ function TaskPane() {
             sessionField:"4",
             doneField:false
         },
+        {
+            taskId:'3',
+            categoryField: "Faculdade",
+            descriptionField:"Trabalho de contabilidade",
+            sessionField:"4",
+            doneField:false
+        },
+       
     ] 
 
     const CategoryInput = ()=>{
