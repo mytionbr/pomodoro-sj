@@ -1,5 +1,12 @@
+.task_container{
+  display: flex;
+  flex-direction: column;
+  width: 75rem;
+}
+
+/* Cabeçalho / input de tasks*/
 .task_header_container{
-    width: 73rem;
+    width: 100%;
     background-color: var(--main-color);
     padding: 1rem;
     border-radius: 0.5rem;
@@ -15,7 +22,7 @@
     width: 22%;
 }
 
-.task_input{
+.description_input{
     width: 55%;
 }
 
@@ -25,7 +32,7 @@
     border: 0.2rem solid white !important;
     font-size: 1.9rem !important;
     color: #fff;
-    transition: all 1s;
+    transition: all 0.5s;
 }
 
 .button_input:hover{
@@ -33,11 +40,11 @@
 }
 
 
-.category_input,.task_input {
+.category_input,.description_input {
     border: 0.2rem solid white;
     background: var(--main-color);
     color: #fff;
-    font-size: 1.9rem;
+    font-size: 2.1rem;
     font-weight: 700;
     border-radius: 0.5rem;
     padding: 0.5rem;
@@ -45,11 +52,59 @@
 }
 
 
-.category_input:focus,.task_input:focus{
+.category_input:focus,.description_input:focus{
     box-shadow: none;
     outline: 0;
 }
 
+/*Lista de tarefas*/
+
+.task_list{
+  width: 100%;
+}
+
+.task_item{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 1.1rem;
+  margin-top: 0.3rem;
+  border-top: 0.2rem solid #000;
+}
+
+.task_item input{
+    border: 0.2rem solid white;
+    color: #000;
+    font-size: 1.9rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.task_item_category{
+  width: 20%;
+}
+
+.task_item_description{
+  width: 40%;
+}
+
+.task_item_session{
+  width: 7%;
+  border: 0.2rem solid #000 !important;
+  border-radius: 80% !important;
+  text-align: center;
+}
+
+.task_item_done{
+  width: 10%;
+  border: 0.2rem solid #000 !important;
+  text-align: center;
+}
+
+
+
+/*Configurações do button*/
 
 .button_input {
     display: inline-block;
