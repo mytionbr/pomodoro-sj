@@ -1,15 +1,41 @@
 .task_header_container{
-    display: flex;
-    width: 60rem;
-    background-color: var(--bg-red);
+    width: 73rem;
+    background-color: var(--main-color);
     padding: 1rem;
     border-radius: 0.5rem;
 }
 
+.task_header_container form{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
 
-.category_input {
+.category_input{
+    width: 22%;
+}
+
+.task_input{
+    width: 55%;
+}
+
+.button_input{
+    width: 10%;
+    background-color: var(--main-color);
+    border: 0.2rem solid white !important;
+    font-size: 1.9rem !important;
+    color: #fff;
+    transition: all 1s;
+}
+
+.button_input:hover{
+    background-color:  var(--main-color-effect);
+}
+
+
+.category_input,.task_input {
     border: 0.2rem solid white;
-    background: var(--bg-red);
+    background: var(--main-color);
     color: #fff;
     font-size: 1.9rem;
     font-weight: 700;
@@ -18,21 +44,120 @@
 
 }
 
-.category_input:focus{
+
+.category_input:focus,.task_input:focus{
     box-shadow: none;
     outline: 0;
 }
 
+
+.button_input {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  .button_input:hover,
+  .button_input:focus,
+  .button_input.focus {
+    text-decoration: none;
+  }
+  .button_input:active,
+  .button_input.active {
+    background-image: none;
+  }
+  .button_input.disabled,
+  .button_input[disabled],
+  fieldset[disabled] .button_input{
+    cursor: not-allowed;
+    filter: alpha(opacity=65);
+    opacity: .65;
+  }
+  a.button_input.disabled,
+  fieldset[disabled] a.button_input{
+    pointer-events: none;
+  }
+  .button_input-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+  }
+  .button_input-default:focus,
+  .button_input-default.focus {
+    color: #333;
+  }
+  .button_input-default:hover {
+    color: #333;
+  }
+  .button_input-default:active,
+  .button_input-default.active,
+  .open > .dropdown-toggle.button_input-default {
+    color: #333;
+  }
+  .button_input-default:active:hover,
+  .button_input-default.active:hover,
+  .open > .dropdown-toggle.button_input-default:hover,
+  .button_input-default:active:focus,
+  .button_input-default.active:focus,
+  .open > .dropdown-toggle.button_input-default:focus,
+  .button_input-default:active.focus,
+  .button_input-default.active.focus,
+  .open > .dropdown-toggle.button_input-default.focus {
+    color: #333;
+  }
+  .button_input-default:active,
+  .button_input-default.active,
+  .open > .dropdown-toggle.button_input-default {
+    background-image: none;
+  }
+  .button_input-default.disabled,
+  .button_input-default[disabled],
+  fieldset[disabled] .button_input-default,
+  .button_input-default.disabled:hover,
+  .button_input-default[disabled]:hover,
+  fieldset[disabled] .button_input-default:hover,
+  .button_input-default.disabled:focus,
+  .button_input-default[disabled]:focus,
+  fieldset[disabled] .button_input-default:focus,
+  .button_input-default.disabled.focus,
+  .button_input-default[disabled].focus,
+  fieldset[disabled] .button_input-default.focus,
+  .button_input-default.disabled:active,
+  .button_input-default[disabled]:active,
+  fieldset[disabled] .button_input-default:active,
+  .button_input-default.disabled.active,
+  .button_input-default[disabled].active,
+  fieldset[disabled] .button_input-default.active {
+  }
+  .button_input-default .badge {
+    color: #fff;
+    background-color: #333;
+  }
+
+
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #F9C9C9;
+    color: #fcf4f4be;
     opacity: 1; /* Firefox */
   }
   
   :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #F9C9C9;
+    color: #fcf4f4be;
   }
   
   ::-ms-input-placeholder { /* Microsoft Edge */
-    color: #F9C9C9;
+    color: #fcf4f4be;
   }
 

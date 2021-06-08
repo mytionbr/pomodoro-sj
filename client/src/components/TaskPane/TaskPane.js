@@ -1,5 +1,7 @@
 import React from 'react'
 import './TaskPane.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus} from "@fortawesome/free-solid-svg-icons";
 function TaskPane() {
     
     const CategoryInput = ()=>{
@@ -10,13 +12,15 @@ function TaskPane() {
 
     const TaskInput = ()=>{
         return (
-                <input type="text" className="category_input" name="category_input" placeholder="Categoria"></input>
+                <input type="text" className="task_input" name="task_input" placeholder="Escreva uma tarefa"></input>
         )
     }
 
     const ButtonInput = ()=>{
         return (
-                <input type="button" value="Send Request" className="category_input" ></input>
+                <button type="button" className="button_input" >
+                     <FontAwesomeIcon icon={faPlus} />
+                </button>
         )
     }
 
