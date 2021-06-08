@@ -1,9 +1,10 @@
 import React from 'react'
+import TaskPane from '../components/TaskPane/TaskPane'
 
 const TasksScreen = () => {
     return (
         <div>
-            <h1>Tarefas</h1>
+                <TaskPane/>
         </div>
     )
 }

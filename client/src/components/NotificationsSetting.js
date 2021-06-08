@@ -35,6 +35,20 @@ const NotificationsSetting = () => {
           </div>
         </div>
       </div>
+      <div className="row">
+        <div className="container_input">
+          <label className="label_input" htmlFor="activate_alarm">
+            Musica de fundo :
+          </label>
+          <div className="select_sound">
+            <select>
+              <option value="0">Funk:</option>
+              <option value="1">Audi</option>
+              <option value="2">BMW</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

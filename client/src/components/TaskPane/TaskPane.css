@@ -1,0 +1,38 @@
+.task_header_container{
+    display: flex;
+    width: 60rem;
+    background-color: var(--bg-red);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+
+.category_input {
+    border: 0.2rem solid white;
+    background: var(--bg-red);
+    color: #fff;
+    font-size: 1.9rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+
+}
+
+.category_input:focus{
+    box-shadow: none;
+    outline: 0;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #F9C9C9;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #F9C9C9;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: #F9C9C9;
+  }
+
