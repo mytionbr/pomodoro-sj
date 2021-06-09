@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TaskPane.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const CategoryInput = ({ task, handleChangeValue }) => {
+const CategoryInput = ({ category, handleChangeValue }) => {
   
 
   return (
@@ -12,20 +12,20 @@ const CategoryInput = ({ task, handleChangeValue }) => {
       className="category_input"
       name="category_input"
       placeholder="Categoria"
-      value={task.category}
+      value={category}
       onChange={(event)=>handleChangeValue('category',event)}
     ></input>
   );
 };
 
-const TaskInput = ({ task, handleChangeValue }) => {
+const TaskInput = ({ description, handleChangeValue }) => {
   return (
     <input
       type="text"
       className="description_input"
       name="description_input"
       placeholder="Escreva uma tarefa"
-      value={task.description}
+      value={description}
       onChange={(event)=>handleChangeValue('description',event)}
     ></input>
   );
@@ -40,31 +40,52 @@ const ButtonInput = ({createNewTask}) => {
 };
 
 const TaskHeaderContainer = ({tasks,setTasks}) => {
-    const [task,setTask] = useState( {
-        id: "",
-        category: "",
-        description: "",
-        session: "",
-        done: false,
-      },)
+  
+
+    const [category,setCategory] = useState('')
+
+    const [description, setDescription] = useState('')
 
     const createNewTask = ()=>{
         
+      let task = {
+          id:String(Math.floor(Math.random() * 10000)),
+          category: category,
+          description: description,
+          session: "1",
+          done: false,
+        }
+
         let newTasks = [...tasks]
         newTasks.push(task)
         setTasks(newTasks)
+        clearFilds()
+      
     }
+
+
+    const clearFilds = ()=>{
+        setCategory('')
+        setDescription('')    
+      }
+    
 
     const handleChangeValue = (name,event)=>{
         let value = event.target.value
-        setTask({...task,[name]:value})
+        
+        if(name === 'description'){
+          setDescription(value)
+        }
+        else{
+          setCategory(value)
+        }
     }
 
   return (
     <div className="task_header_container">
       <form>
-        <CategoryInput task={task} handleChangeValue={handleChangeValue} />
-        <TaskInput task={task} handleChangeValue={handleChangeValue} />
+        <CategoryInput category={category} handleChangeValue={handleChangeValue} />
+        <TaskInput description={description} handleChangeValue={handleChangeValue} />
         <ButtonInput createNewTask={createNewTask} />
       </form>
     </div>
@@ -98,7 +119,7 @@ const Task = (props) => {
 
   const handleChangeDone = (key) => {
     let index = 0;
-    console.log(done);
+    
 
     let result = tasks.filter((task, i) => {
       if (task.id === key) {
