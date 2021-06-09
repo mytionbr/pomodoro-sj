@@ -37,9 +37,11 @@ import { faPlus} from "@fortawesome/free-solid-svg-icons";
     }
 
     const Task =(props)=>{
-        
+               
+       const [done,setDone] = useState(props.done)
+       
        let {tasks,setTasks} = props
-        console.log(props)
+       
         const handleChanceValue = (name,event,key)=>{
             let value = event.target.value
             let index = 0
@@ -66,6 +68,32 @@ import { faPlus} from "@fortawesome/free-solid-svg-icons";
             
         }
         
+        const handleChangeDone = (event,key)=>{
+            let index = 0
+            console.log(done)
+            
+            let result = tasks.filter((task,i) => {
+                if (task.id === key){
+                    index = i
+                    return true
+                } else return false
+            })
+
+            let task = result[0]
+            
+            task.done = !done
+            setDone(!done)
+            
+            
+            let newTaskList = [...tasks]
+    
+            newTaskList[index] = task
+            
+            setTasks(newTaskList)
+       
+       
+            
+        }
         
         return (<li  className="task_item" >
             <input 
@@ -92,7 +120,8 @@ import { faPlus} from "@fortawesome/free-solid-svg-icons";
             <input 
                 type="button" 
                 className="task_item_done" 
-                value={props.done ? "V" : ''} />
+                value={props.done ? "V" : ''} 
+                onClick={(event)=>handleChangeDone(event,props.id)}/>
         </li>)
     }
 
