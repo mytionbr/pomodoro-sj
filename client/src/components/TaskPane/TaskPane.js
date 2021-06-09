@@ -1,35 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import './TaskPane.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus} from "@fortawesome/free-solid-svg-icons";
-function TaskPane() {
-    
-    const tasks = [
-        {
-            taskId:'1',
-            categoryField: "Faculdade",
-            descriptionField:"Trabalho de contabilidade",
-            sessionField:"10",
-            doneField:false
-        },
-        {
-            taskId:'2',
-            categoryField: "Faculdade",
-            descriptionField:"Trabalho de contabilidade",
-            sessionField:"4",
-            doneField:false
-        },
-        {
-            taskId:'3',
-            categoryField: "Faculdade",
-            descriptionField:"Trabalho de contabilidade",
-            sessionField:"4",
-            doneField:false
-        },
-       
-    ] 
 
-    const CategoryInput = ()=>{
+
+ const CategoryInput = ()=>{
         return (
                 <input type="text" className="category_input" name="category_input" placeholder="Categoria"></input>
         )
@@ -62,49 +37,120 @@ function TaskPane() {
     }
 
     const Task =(props)=>{
-        return <li className="task_item" key={props.id}>
+        
+       let {tasks,setTasks} = props
+        console.log(props)
+        const handleChanceValue = (name,event,key)=>{
+            let value = event.target.value
+            let index = 0
+    
+           
+            let result = tasks.filter((task,i) => {
+               
+                if (task.id === key){
+                    
+                    index = i
+                    return true
+                } else return false
+    
+    
+            })
+            let task = result[0]
+            task[name] = value
+            
+            let newTaskList = [...tasks]
+    
+            newTaskList[index] = task
+            
+            setTasks(newTaskList)
+            
+        }
+        
+        
+        return (<li  className="task_item" >
             <input 
                 type="text" 
                 className="task_item_category" 
-                value={props.category} />
+                value={props.category} 
+                key={'category'}
+                onChange={(event)=>handleChanceValue('category',event,props.id)}/>
 
             <input 
                 type="text" 
                 className="task_item_description" 
-                value={props.description} />
+                value={props.description}
+                key={'description'} 
+                onChange={(event)=>handleChanceValue('description',event,props.id)}/>
             
             <input 
                 type="number" 
                 className="task_item_session" 
-                value={props.session} />
+                value={props.session} 
+                key={'session'}
+                onChange={(event)=>handleChanceValue('session',event,props.id)}/>
             
             <input 
                 type="button" 
                 className="task_item_done" 
                 value={props.done ? "V" : ''} />
-        </li>
+        </li>)
     }
 
-    const TaskList = ({tasks})=>{
+    const TaskList = ({tasks,setTasks})=>{
         return (
-            <ul className="task_list">
+            <ul className="task_list" key={tasks.length}>
                 {tasks.map(task => {
                     return <Task 
                                 id={task.id}
-                                category={task.categoryField} 
-                                description={task.descriptionField}
-                                session={task.sessionField}
-                                done={task.doneField}/>
+                                category={task.category} 
+                                description={task.description}
+                                session={task.session}
+                                done={task.done}
+                                key={task.id}
+                                tasks={tasks}
+                                setTasks={setTasks}
+                                />
                     
                 })}
             </ul>
         )
     }
+
+
+
+const  TaskPane = ()=> {
     
+    let [tasks,setTasks] = useState([
+        {
+            id:'1',
+            category: "Faculdade",
+            description:"Trabalho de contabilidade",
+            session:"10",
+            done:false
+        },
+        {
+            id:'2',
+            category: "Faculdade",
+            description:"Trabalho de contabilidade",
+            session:"4",
+            done:false
+        },
+        {
+            id:'3',
+            category: "Faculdade",
+            description:"Trabalho de contabilidade",
+            session:"4",
+            done:false
+        },
+       
+    ])
+
+   
+       
     return (
         <div className="task_container">
             <TaskHeaderContainer/>
-            <TaskList tasks={tasks}/>
+            <TaskList tasks={tasks} setTasks={setTasks}/>
         </div>
     )
 }
