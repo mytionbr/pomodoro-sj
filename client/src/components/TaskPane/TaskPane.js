@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import './TaskPane.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus} from "@fortawesome/free-solid-svg-icons";
+import { faPlus,faCheck} from "@fortawesome/free-solid-svg-icons";
 
 
  const CategoryInput = ()=>{
@@ -117,11 +117,12 @@ import { faPlus} from "@fortawesome/free-solid-svg-icons";
                 key={'session'}
                 onChange={(event)=>handleChanceValue('session',event,props.id)}/>
             
-            <input 
+            <button 
                 type="button" 
                 className="task_item_done" 
-                value={props.done ? "V" : ''} 
-                onClick={(event)=>handleChangeDone(event,props.id)}/>
+                onClick={(event)=>handleChangeDone(event,props.id)}>
+                    {props.done ?  <FontAwesomeIcon className="task_item_done_icon" icon={faCheck} /> : ''}
+            </button>
         </li>)
     }
 

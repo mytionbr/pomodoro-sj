@@ -103,9 +103,14 @@
   width: 10%;
   border: 0.2rem solid #000 !important;
   text-align: center;
+  cursor: pointer;
+  
 }
 
-
+.task_item_done_icon{
+  font-size: 2rem;
+  color: green;
+}
 
 /*Configurações do button*/
 
