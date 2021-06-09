@@ -96,6 +96,11 @@ import { faPlus,faCheck} from "@fortawesome/free-solid-svg-icons";
         }
         
         return (<li  className="task_item" >
+            {
+                props.done
+                ?<span className="task_item_line_through"/>
+                : ''
+            }
             <input 
                 type="text" 
                 className="task_item_category" 
