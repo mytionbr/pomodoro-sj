@@ -18,7 +18,7 @@ const OptionsPopup = ({ incrementSession, decrementSession, removeTask }) => {
       </button>
       <button className="task_option" onClick={decrementSession}>
         <FontAwesomeIcon className="task_option_icon" icon={faMinus} />
-        Subtrair
+        Remover
       </button>
       <button className="task_option" onClick={removeTask}>
         <FontAwesomeIcon className="task_option_icon" icon={faTrash} />
@@ -238,6 +238,7 @@ const Task = (props) => {
         value={props.category}
         key={"category"}
         onChange={(event) => handleChanceValue("category", event, props.id)}
+        disabled={props.done ? true : false}
       />
 
       <input
@@ -246,6 +247,7 @@ const Task = (props) => {
         value={props.description}
         key={"description"}
         onChange={(event) => handleChanceValue("description", event, props.id)}
+        disabled={props.done ? true : false}
       />
 
       <input
@@ -254,6 +256,7 @@ const Task = (props) => {
         value={props.session}
         key={"session"}
         onChange={(event) => handleChanceValue("session", event, props.id)}
+        disabled={props.done ? true : false}
       />
 
       <button
