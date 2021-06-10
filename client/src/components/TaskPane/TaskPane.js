@@ -1,11 +1,56 @@
 import React, { useState, useEffect } from "react";
 import "./TaskPane.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faCheck } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faCheck,
+  faEllipsisH,
+  faMinus,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
+
+const OptionsPopup = () => {
+  return (
+    <div className="task_options_popup">
+      <button className="task_option">
+        <FontAwesomeIcon className="task_option_icon" icon={faPlus} />
+        Adicionar
+      </button>
+      <button className="task_option">
+        <FontAwesomeIcon className="task_option_icon" icon={faMinus} />
+        Subtrair
+      </button>
+      <button className="task_option">
+        <FontAwesomeIcon className="task_option_icon" icon={faTrash} />
+        Excluir
+      </button>
+    </div>
+  );
+};
+
+const Options = () => {
+  const [open,setOpen] = useState(false)
+  const handleOpenOptions = ()=>{
+    setOpen(!open)
+  }
+  return (
+    <div>
+      <button className="task_options_btn">
+        <FontAwesomeIcon
+          className="task_item_done_options"
+          icon={faEllipsisH}
+          onClick={handleOpenOptions}
+        />
+      </button>
+      {
+        open 
+        ? <OptionsPopup />
+        : ''}
+    </div>
+  );
+};
 
 const CategoryInput = ({ category, handleChangeValue }) => {
-  
-
   return (
     <input
       type="text"
@@ -13,7 +58,7 @@ const CategoryInput = ({ category, handleChangeValue }) => {
       name="category_input"
       placeholder="Categoria"
       value={category}
-      onChange={(event)=>handleChangeValue('category',event)}
+      onChange={(event) => handleChangeValue("category", event)}
     ></input>
   );
 };
@@ -26,66 +71,69 @@ const TaskInput = ({ description, handleChangeValue }) => {
       name="description_input"
       placeholder="Escreva uma tarefa"
       value={description}
-      onChange={(event)=>handleChangeValue('description',event)}
+      onChange={(event) => handleChangeValue("description", event)}
     ></input>
   );
 };
 
-const ButtonInput = ({createNewTask}) => {
+const ButtonInput = ({ createNewTask }) => {
   return (
-    <button type="button" className="button_input" onClick={()=>createNewTask()}>
+    <button
+      type="button"
+      className="button_input"
+      onClick={() => createNewTask()}
+    >
       <FontAwesomeIcon icon={faPlus} />
     </button>
   );
 };
 
-const TaskHeaderContainer = ({tasks,setTasks}) => {
-  
+const TaskHeaderContainer = ({ tasks, setTasks }) => {
+  const [category, setCategory] = useState("");
 
-    const [category,setCategory] = useState('')
+  const [description, setDescription] = useState("");
 
-    const [description, setDescription] = useState('')
+  const createNewTask = () => {
+    let task = {
+      id: String(Math.floor(Math.random() * 10000)),
+      category: category,
+      description: description,
+      session: "1",
+      done: false,
+    };
 
-    const createNewTask = ()=>{
-        
-      let task = {
-          id:String(Math.floor(Math.random() * 10000)),
-          category: category,
-          description: description,
-          session: "1",
-          done: false,
-        }
+    let newTasks = [...tasks];
+    newTasks.unshift(task);
+    setTasks(newTasks);
+    clearFilds();
+  };
 
-        let newTasks = [...tasks]
-        newTasks.unshift(task)
-        setTasks(newTasks)
-        clearFilds()
-      
+  const clearFilds = () => {
+    setCategory("");
+    setDescription("");
+  };
+
+  const handleChangeValue = (name, event) => {
+    let value = event.target.value;
+
+    if (name === "description") {
+      setDescription(value);
+    } else {
+      setCategory(value);
     }
-
-
-    const clearFilds = ()=>{
-        setCategory('')
-        setDescription('')    
-      }
-    
-
-    const handleChangeValue = (name,event)=>{
-        let value = event.target.value
-        
-        if(name === 'description'){
-          setDescription(value)
-        }
-        else{
-          setCategory(value)
-        }
-    }
+  };
 
   return (
     <div className="task_header_container">
       <form>
-        <CategoryInput category={category} handleChangeValue={handleChangeValue} />
-        <TaskInput description={description} handleChangeValue={handleChangeValue} />
+        <CategoryInput
+          category={category}
+          handleChangeValue={handleChangeValue}
+        />
+        <TaskInput
+          description={description}
+          handleChangeValue={handleChangeValue}
+        />
         <ButtonInput createNewTask={createNewTask} />
       </form>
     </div>
@@ -119,7 +167,6 @@ const Task = (props) => {
 
   const handleChangeDone = (key) => {
     let index = 0;
-    
 
     let result = tasks.filter((task, i) => {
       if (task.id === key) {
@@ -178,6 +225,8 @@ const Task = (props) => {
           ""
         )}
       </button>
+
+      <Options />
     </li>
   );
 };
