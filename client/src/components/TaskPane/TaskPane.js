@@ -335,7 +335,7 @@ const TaskPane = () => {
     {
       id: "0",
       category: "Trabalho",
-      description: "Entregar relatorio",
+      description: "Entregar relatório",
       session: "4",
       done: false,
     },
@@ -349,7 +349,7 @@ const TaskPane = () => {
     {
       id: "4",
       category: "Lazer",
-      description: "Exercicios fisicos",
+      description: "Exercícios físicos",
       session: "4",
       done: false,
     },
