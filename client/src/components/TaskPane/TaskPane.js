@@ -57,7 +57,7 @@ const TaskHeaderContainer = ({tasks,setTasks}) => {
         }
 
         let newTasks = [...tasks]
-        newTasks.push(task)
+        newTasks.unshift(task)
         setTasks(newTasks)
         clearFilds()
       

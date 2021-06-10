@@ -1,7 +1,7 @@
 .task_container{
   display: flex;
   flex-direction: column;
-  width: 75rem;
+  width: 80rem;
   margin: 1rem 0;
 
 }
@@ -116,7 +116,7 @@
 .task_item_line_through{
   height: 0.3rem;
   background-color: #000;
-  width: 45%;
+  width: 48%;
   margin-top: 1.5rem;
   margin-right: 10rem;
   position: absolute;
