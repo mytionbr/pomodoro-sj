@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./TaskPane.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,7 +9,7 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 
-const OptionsPopup = ({incrementSession,decrementSession}) => {
+const OptionsPopup = ({ incrementSession, decrementSession, removeTask }) => {
   return (
     <div className="task_options_popup">
       <button className="task_option" onClick={incrementSession}>
@@ -20,7 +20,7 @@ const OptionsPopup = ({incrementSession,decrementSession}) => {
         <FontAwesomeIcon className="task_option_icon" icon={faMinus} />
         Subtrair
       </button>
-      <button className="task_option">
+      <button className="task_option" onClick={removeTask}>
         <FontAwesomeIcon className="task_option_icon" icon={faTrash} />
         Excluir
       </button>
@@ -28,11 +28,11 @@ const OptionsPopup = ({incrementSession,decrementSession}) => {
   );
 };
 
-const Options = ({incrementSession,decrementSession}) => {
-  const [open,setOpen] = useState(false)
-  const handleOpenOptions = ()=>{
-    setOpen(!open)
-  }
+const Options = ({ incrementSession, decrementSession, removeTask }) => {
+  const [open, setOpen] = useState(false);
+  const handleOpenOptions = () => {
+    setOpen(!open);
+  };
   return (
     <div>
       <button className="task_options_btn">
@@ -42,12 +42,15 @@ const Options = ({incrementSession,decrementSession}) => {
           onClick={handleOpenOptions}
         />
       </button>
-      {
-        open 
-        ? <OptionsPopup 
-            incrementSession={incrementSession}
-            decrementSession={decrementSession}/>
-        : ''}
+      {open ? (
+        <OptionsPopup
+          incrementSession={incrementSession}
+          decrementSession={decrementSession}
+          removeTask={removeTask}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
@@ -167,56 +170,64 @@ const Task = (props) => {
     setTasks(newTaskList);
   };
 
-  const handleChangeDone = (task) => {
+  const handleChangeDone = (task, newTaskList) => {
     task.done = !done;
     setDone(!done);
-
+    saveTasks(newTaskList);
   };
 
-  const incrementSession = (task)=>{
+  const incrementSession = (task, newTaskList) => {
     task.session = String(Number(task.session) + 1);
-  }
-  
-  const decrementSession = (task)=>{
-    task.session = String(Number(task.session) - 1);
-  }
+    saveTasks(newTaskList);
+  };
 
-  const triggerAction = (task,action)=>{
+  const decrementSession = (task, newTaskList) => {
+    task.session = String(Number(task.session) - 1);
+    saveTasks(newTaskList);
+  };
+
+  const removeTask = (index, newTaskList) => {
+    newTaskList.splice(index, 1);
+    saveTasks(newTaskList);
+  };
+
+  const saveTasks = (newTaskList) => {
+    setTasks(newTaskList);
+  };
+
+  const triggerAction = (task, index, newTaskList, action) => {
     switch (action) {
-      case 'decrementSession':
-        decrementSession(task)
+      case "decrementSession":
+        decrementSession(task, newTaskList);
         break;
-        case 'incrementSession':
-          incrementSession(task)
+      case "incrementSession":
+        incrementSession(task, newTaskList);
         break;
-        case 'handleChangeDone':
-          handleChangeDone(task)
+      case "handleChangeDone":
+        handleChangeDone(task, newTaskList);
+        break;
+      case "removeTask":
+        removeTask(index, newTaskList);
         break;
       default:
         break;
     }
-  }
-  
-  const handleAction = (key,action)=>{
-    let index = 0
+  };
 
-    let result = tasks.filter((task, i) => {
+  const handleAction = (key, action) => {
+    let index = 0;
+
+    let task = tasks.find((task, i) => {
       if (task.id === key) {
         index = i;
         return true;
       } else return false;
     });
 
-    let task = result[0];
-
-    triggerAction(task,action)
-
     let newTaskList = [...tasks];
 
-    newTaskList[index] = task;
-
-    setTasks(newTaskList);
-  }
+    triggerAction(task, index, newTaskList, action);
+  };
 
   return (
     <li className="task_item">
@@ -248,7 +259,7 @@ const Task = (props) => {
       <button
         type="button"
         className="task_item_done"
-        onClick={() => handleAction(props.id,'handleChangeDone')}
+        onClick={() => handleAction(props.id, "handleChangeDone")}
       >
         {props.done ? (
           <FontAwesomeIcon className="task_item_done_icon" icon={faCheck} />
@@ -257,17 +268,18 @@ const Task = (props) => {
         )}
       </button>
 
-      <Options  
-        incrementSession={()=>handleAction(props.id,'incrementSession')} 
-        decrementSession={()=>handleAction(props.id,'decrementSession')}
-        />
+      <Options
+        incrementSession={() => handleAction(props.id, "incrementSession")}
+        decrementSession={() => handleAction(props.id, "decrementSession")}
+        removeTask={() => handleAction(props.id, "removeTask")}
+      />
     </li>
   );
 };
 
 const TaskList = ({ tasks, setTasks }) => {
   return (
-    <ul className="task_list" key={tasks.length}>
+    <ul className="task_list">
       {tasks.map((task) => {
         return (
           <Task
@@ -296,16 +308,23 @@ const TaskPane = () => {
       done: false,
     },
     {
-      id: "2",
-      category: "Faculdade",
-      description: "Trabalho de contabilidade",
+      id: "0",
+      category: "Trabalho",
+      description: "Entregar relatorio",
       session: "4",
       done: false,
     },
     {
       id: "3",
-      category: "Faculdade",
-      description: "Trabalho de contabilidade",
+      category: "Estudo",
+      description: "Piano",
+      session: "4",
+      done: false,
+    },
+    {
+      id: "4",
+      category: "Lazer",
+      description: "Exercicios fisicos",
       session: "4",
       done: false,
     },
