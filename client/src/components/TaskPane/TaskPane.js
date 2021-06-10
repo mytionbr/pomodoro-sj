@@ -204,7 +204,7 @@ const Task = (props) => {
   };
 
   const decrementSession = (task, newTaskList) => {
-    task.session = String(Number(task.session) - 1);
+    task.session = String(Number(task.session) > 1? Number(task.session) - 1 :  task.session);
     saveTasks(newTaskList);
   };
 
