@@ -9,14 +9,14 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 
-const OptionsPopup = () => {
+const OptionsPopup = ({incrementSession,decrementSession}) => {
   return (
     <div className="task_options_popup">
-      <button className="task_option">
+      <button className="task_option" onClick={incrementSession}>
         <FontAwesomeIcon className="task_option_icon" icon={faPlus} />
         Adicionar
       </button>
-      <button className="task_option">
+      <button className="task_option" onClick={decrementSession}>
         <FontAwesomeIcon className="task_option_icon" icon={faMinus} />
         Subtrair
       </button>
@@ -28,7 +28,7 @@ const OptionsPopup = () => {
   );
 };
 
-const Options = () => {
+const Options = ({incrementSession,decrementSession}) => {
   const [open,setOpen] = useState(false)
   const handleOpenOptions = ()=>{
     setOpen(!open)
@@ -44,7 +44,9 @@ const Options = () => {
       </button>
       {
         open 
-        ? <OptionsPopup />
+        ? <OptionsPopup 
+            incrementSession={incrementSession}
+            decrementSession={decrementSession}/>
         : ''}
     </div>
   );
@@ -165,8 +167,38 @@ const Task = (props) => {
     setTasks(newTaskList);
   };
 
-  const handleChangeDone = (key) => {
-    let index = 0;
+  const handleChangeDone = (task) => {
+    task.done = !done;
+    setDone(!done);
+
+  };
+
+  const incrementSession = (task)=>{
+    task.session = String(Number(task.session) + 1);
+  }
+  
+  const decrementSession = (task)=>{
+    task.session = String(Number(task.session) - 1);
+  }
+
+  const triggerAction = (task,action)=>{
+    switch (action) {
+      case 'decrementSession':
+        decrementSession(task)
+        break;
+        case 'incrementSession':
+          incrementSession(task)
+        break;
+        case 'handleChangeDone':
+          handleChangeDone(task)
+        break;
+      default:
+        break;
+    }
+  }
+  
+  const handleAction = (key,action)=>{
+    let index = 0
 
     let result = tasks.filter((task, i) => {
       if (task.id === key) {
@@ -177,15 +209,14 @@ const Task = (props) => {
 
     let task = result[0];
 
-    task.done = !done;
-    setDone(!done);
+    triggerAction(task,action)
 
     let newTaskList = [...tasks];
 
     newTaskList[index] = task;
 
     setTasks(newTaskList);
-  };
+  }
 
   return (
     <li className="task_item">
@@ -217,7 +248,7 @@ const Task = (props) => {
       <button
         type="button"
         className="task_item_done"
-        onClick={() => handleChangeDone(props.id)}
+        onClick={() => handleAction(props.id,'handleChangeDone')}
       >
         {props.done ? (
           <FontAwesomeIcon className="task_item_done_icon" icon={faCheck} />
@@ -226,7 +257,10 @@ const Task = (props) => {
         )}
       </button>
 
-      <Options />
+      <Options  
+        incrementSession={()=>handleAction(props.id,'incrementSession')} 
+        decrementSession={()=>handleAction(props.id,'decrementSession')}
+        />
     </li>
   );
 };
