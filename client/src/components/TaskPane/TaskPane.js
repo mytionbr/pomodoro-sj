@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import "./TaskPane.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,9 +9,9 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 
-const OptionsPopup = ({ incrementSession, decrementSession, removeTask }) => {
+const OptionsPopup = ({ incrementSession, decrementSession, removeTask,innerRef }) => {
   return (
-    <div className="task_options_popup">
+    <div className="task_options_popup" ref={innerRef}>
       <button className="task_option" onClick={incrementSession}>
         <FontAwesomeIcon className="task_option_icon" icon={faPlus} />
         Adicionar
@@ -33,8 +33,27 @@ const Options = ({ incrementSession, decrementSession, removeTask }) => {
   const handleOpenOptions = () => {
     setOpen(!open);
   };
+
+  const node = useRef(null)
+
+  const handleClickOutside = e =>{
+    console.log(open)
+    if(node.current && node.current.contains(e.target)){
+      return
+    }
+    setOpen(false)
+  }
+
+  useEffect(()=>{
+    document.addEventListener("mousedown",handleClickOutside)
+    return ()=>{
+      document.removeEventListener("mousedown",handleClickOutside)
+    }
+  },[])
+ 
+
   return (
-    <div>
+    <div >
       <button className="task_options_btn">
         <FontAwesomeIcon
           className="task_item_done_options"
@@ -47,6 +66,7 @@ const Options = ({ incrementSession, decrementSession, removeTask }) => {
           incrementSession={incrementSession}
           decrementSession={decrementSession}
           removeTask={removeTask}
+          innerRef={node}
         />
       ) : (
         ""
