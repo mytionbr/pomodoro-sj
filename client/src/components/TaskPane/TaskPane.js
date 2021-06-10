@@ -30,17 +30,19 @@ const OptionsPopup = ({ incrementSession, decrementSession, removeTask,innerRef 
 
 const Options = ({ incrementSession, decrementSession, removeTask }) => {
   const [open, setOpen] = useState(false);
-  const handleOpenOptions = () => {
-    setOpen(!open);
-  };
-
   const node = useRef(null)
 
+  const handleOpenOptions = () => {
+    setOpen(true)
+  };
+
+  
+
   const handleClickOutside = e =>{
-    console.log(open)
     if(node.current && node.current.contains(e.target)){
       return
     }
+    
     setOpen(false)
   }
 
@@ -54,11 +56,11 @@ const Options = ({ incrementSession, decrementSession, removeTask }) => {
 
   return (
     <div >
-      <button className="task_options_btn">
+      <button className="task_options_btn"
+        onClick={handleOpenOptions}>
         <FontAwesomeIcon
           className="task_item_done_options"
           icon={faEllipsisH}
-          onClick={handleOpenOptions}
         />
       </button>
       {open ? (
