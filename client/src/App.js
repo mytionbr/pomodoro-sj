@@ -65,7 +65,7 @@ function App() {
                 </Link>
               </li>
               <li>
-                <Link to={"/usuario"}>
+                <Link to={"/usuario/login"}>
                   <i>
                     <FontAwesomeIcon icon={faUser} />
                   </i>{" "}
@@ -89,9 +89,15 @@ function App() {
             <Route exact path="/tarefas">
               <TasksScreen />
             </Route>
-            <Route exact path="/usuario">
-              <UserScreen />
-            </Route>
+            <Route 
+              path={["/usuario/:screen","/usuario/"]}
+              render={(props)=>(
+                <UserScreen
+                settings={settings}
+                dispatch={dispatch}
+                {...props}/>
+              )}
+            />
             <Route
               path="/configuracoes/:setting"
               render={(props) => (

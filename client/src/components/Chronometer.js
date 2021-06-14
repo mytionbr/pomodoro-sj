@@ -87,7 +87,6 @@ const Chronometer = ({ settings, dispatch,colorManager }) => {
   };
 
   const handleChangeMode = ()=>{
-    console.log(settings.sessions.currentSession)
     switch(settings.sessions.currentSession){
       case 'pomomodoro':
         setTime(pomodoro.time)
