@@ -1,9 +1,10 @@
 import React from 'react'
+import { Login } from '../components/Login/Login'
 
 const UserScreen = () => {
     return (
         <div>
-            <h1>Usuário</h1>
+            <Login/>
         </div>
     )
 }
